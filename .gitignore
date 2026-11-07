@@ -1,0 +1,15 @@
+# Ambientes locais, banco de demonstração e arquivos gerados não são código.
+backend/.venv/
+__pycache__/
+*.py[cod]
+backend/*.db
+backend/*.db-*
+mobile/node_modules/
+mobile/.expo/
+mobile/dist/
+mobile/.env
+mobile/.env.*.local
+*.log
+.DS_Store
+.venv-e2e/
+test-results/

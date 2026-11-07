@@ -1,0 +1,2 @@
+# Somente para o teste opcional de interface web; não é dependência da API.
+playwright==1.62.0
