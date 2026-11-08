@@ -174,7 +174,7 @@ Consulte [o roteiro e o registro de validação](documentacao/TESTES.md) para o 
 
 ## Documentação
 
-- [Modelo preenchível Word/PDF segundo a rubrica da APS](documentacao/modelo_aps/LEIA-ME.md)
+- [Modelo preenchível Word/PDF com formatação ABNT e limites da APS](documentacao/modelo_aps/LEIA-ME.md)
 - [Guia dos requisitos, autoria, páginas e envio](documentacao/GUIA_RUBRICA_UNIP.md)
 
 - [Checklist das próximas etapas e da entrega](documentacao/ENTREGA.md)

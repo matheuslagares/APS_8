@@ -4,14 +4,22 @@ Este material organiza a rubrica recebida; não é um trabalho acadêmico pronto
 
 ## Arquivos principais
 
-- [Modelo Word editável](MODELO_PREENCHIVEL_APS.docx) e [prévia PDF](MODELO_PREENCHIVEL_APS.pdf): 29 páginas de organização, incluindo quatro UML e DER como referências técnicas para revisão.
-- [Relatório técnico de código selecionado em Word](RELATORIO_TECNICO_CODIGO_SELECIONADO.docx) e [PDF](RELATORIO_TECNICO_CODIGO_SELECIONADO.pdf): seis páginas, inventário e 135 linhas selecionadas; não é o fonte integral.
+- [Modelo Word editável](MODELO_PREENCHIVEL_APS.docx) e [prévia PDF](MODELO_PREENCHIVEL_APS.pdf): 36 páginas de organização, incluindo quatro UML e DER como referências técnicas para revisão.
+- [Relatório técnico de código selecionado em Word](RELATORIO_TECNICO_CODIGO_SELECIONADO.docx) e [PDF](RELATORIO_TECNICO_CODIGO_SELECIONADO.pdf): sete páginas, inventário e 135 linhas selecionadas; não é o fonte integral.
 - [Inventário técnico](INVENTARIO_TECNICO.md) e [JSON de origem](INVENTARIO_TECNICO.json): dados extraídos do commit `028b7041702f68e1a473d57acbe95037a8341a79`.
 - [Diagramas](diagramas/): fontes PlantUML, PNG e SVG. São casos de uso, classes conceituais, sequência, atividades e DER físico.
 - [ZIP de referência do fonte](FONTE_REFERENCIA_PARA_PREPARAR_NO_WINRAR.zip): fonte completo e recursos da versão inspecionada, sem banco, uploads, dependências instaladas ou credenciais locais.
 - [Validação de páginas](VALIDACAO_PAGINAS.json): contagem dos PDFs e limites da verificação. [Checksums](SHA256_ARTEFATOS.txt) permitem conferir os arquivos.
 
 A identificação pessoal foi deixada sem preenchimento, conforme solicitado. Na versão final, o grupo deverá tratar os itens de identificação e comentários de título/participantes conforme a orientação recebida.
+
+## Formatação ABNT adotada
+
+A4, margens superior/esquerda de 3 cm e inferior/direita de 2 cm; Arial 12 configurada, corpo justificado com entrelinhas 1,5 e recuo inicial adotado de 1,25 cm. Figuras, quadros e tabelas possuem identificação e fonte; código usa fonte monoespaçada 10 e espaço simples. A conversão PDF usa fontes Liberation compatíveis disponíveis no ambiente.
+
+Foram incluídos folha de rosto, modelo de aprovação, resumo/abstract preenchíveis, lista de figuras e sumário atualizável. A capa não conta; os pré-textuais contam sem número visível. A primeira seção textual começa com o número 8. O sumário ocupa duas páginas. Referências e apêndice não têm indicativo numérico. Ver [normas e escolhas adotadas](../NORMAS_ABNT_ADOTADAS.md).
+
+No Word, atualizar os campos com Ctrl+A e F9 após editar e conferir novamente o PDF. A validação técnica não certifica autoria, conteúdo final ou aceitação institucional.
 
 ## Orçamento confirmado no PDF do modelo
 
@@ -22,11 +30,11 @@ A identificação pessoal foi deixada sem preenchimento, conforme solicitado. Na
 | Fundamentos | 4 | 4–8 |
 | Plano de desenvolvimento | 5 | 5–15 |
 | Projeto: requisitos + quatro UML + DER | 6 | 3–8 |
-| Código selecionado | 6 | Até 10 |
+| Código selecionado | 7 | Até 10 |
 
-As páginas restantes são capa, índice, preparação da apresentação, bibliografia e orientação para anexar fichas. O índice corresponde ao modelo atual; depois de editar, atualizar páginas e conferir novamente os limites. A formatação final deve seguir o padrão institucional confirmado pelo professor.
+As páginas restantes são capa, sumário, preparação da apresentação, bibliografia e orientação para anexar fichas. O sumário corresponde ao modelo atual; depois de editar, atualizar páginas e conferir novamente os limites. A formatação final deve seguir o padrão institucional confirmado pelo professor.
 
-A produção contém 2.096 linhas físicas em 21 arquivos (incluindo comentários e linhas vazias). Não se tentou encolher o código integral em dez páginas. Confirmar com o professor se aceita o relatório parcial de seis páginas acompanhado do fonte completo separado.
+A produção contém 2.096 linhas físicas em 21 arquivos (incluindo comentários e linhas vazias). Não se tentou encolher o código integral em dez páginas. Confirmar com o professor se aceita o relatório parcial de sete páginas acompanhado do fonte completo separado.
 
 ## Fonte para o WinRAR e extensão .doc
 
