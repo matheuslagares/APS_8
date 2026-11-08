@@ -20,7 +20,7 @@ flowchart LR
 
 ## Preparar o computador
 
-Instale Python 3.10 ou superior, Node.js LTS e Git. Use um editor como VS Code. O projeto usa **Expo SDK 57** (`expo ~57.0.32`), **React 19.2.3** e **React Native 0.86.3**, a partir do template oficial blank. No Android, instale Expo Go e confira se sua versão aceita esse SDK. O arquivo de dependências e o lockfile definem a combinação usada pelo projeto; não atualize pacotes aleatoriamente para corrigir incompatibilidades.
+Instale Python 3.10 ou superior, Node.js LTS e Git. A versão de Node usada nos testes foi **24.22.1**, registrada em `mobile/.nvmrc`. Use um editor como VS Code. O projeto usa **Expo SDK 57** (`expo ~57.0.32`), **React 19.2.3** e **React Native 0.86.3**, a partir do template oficial blank. No Android, instale Expo Go e confira a compatibilidade com esse SDK em [expo.dev/go](https://expo.dev/go). O arquivo de dependências e o lockfile definem a combinação usada pelo projeto; não atualize pacotes aleatoriamente para corrigir incompatibilidades.
 
 Abra esta pasta no terminal. Os comandos abaixo usam dois terminais: um para a API e outro para o Expo.
 
@@ -89,7 +89,19 @@ cd mobile
 npm ci
 ```
 
-Copie `mobile/.env.example` para `mobile/.env` e configure `EXPO_PUBLIC_API_URL` com o IPv4 real do computador:
+Dentro de `mobile`, copie o exemplo sem sobrescrever uma configuração local que você já tenha. No Windows CMD:
+
+```bat
+copy .env.example .env
+```
+
+No Linux/macOS:
+
+```sh
+cp .env.example .env
+```
+
+Abra o arquivo `.env` criado e configure `EXPO_PUBLIC_API_URL` com o IPv4 real do computador:
 
 ```dotenv
 EXPO_PUBLIC_API_URL=http://192.168.1.20:5000
@@ -98,10 +110,12 @@ EXPO_PUBLIC_API_URL=http://192.168.1.20:5000
 O IP acima é fictício. O endereço da API fica centralizado em `mobile/src/config.js`. A variável é pública e não deve conter credenciais. Depois de alterar o endereço, reinicie o Expo para carregar a configuração:
 
 ```sh
-npx expo start --clear
+npx expo start --lan --port 8081 --clear
 ```
 
-Abra o Expo Go e escaneie o QR Code. Mantenha os terminais da API e do Expo abertos. O Expo entrega o aplicativo em desenvolvimento; o Flask recebe as consultas e grava os relatos. Executar no Expo Go não gera um APK independente: confirme com o professor o formato de entrega exigido.
+Abra o Expo Go e escaneie o QR Code. Confira se o endereço mostrado pelo Expo usa o IPv4 LAN do computador e a porta `8081`. O formato escolhido para a demonstração é **Expo Go**. Mantenha os terminais da API e do Expo abertos: o Expo entrega o aplicativo em desenvolvimento e o Flask recebe as consultas e grava os relatos.
+
+O celular precisa alcançar **dois serviços**: Python/Flask na porta `5000` e Node/Metro na `8081`. Se `/saude` abre, mas o QR Code não carrega o aplicativo, confira o endereço LAN do Expo e a permissão do Node no firewall **da rede privada**. A permissão do Python não libera automaticamente o Node. Não desative o firewall inteiro; redes de convidados também podem impedir essa comunicação.
 
 ## Usar o protótipo
 
@@ -146,6 +160,10 @@ Consulte [o roteiro e o registro de validação](documentacao/TESTES.md) para o 
 
 ## Documentação
 
+- [Checklist das próximas etapas e da entrega](documentacao/ENTREGA.md)
+- [Roteiro de apresentação de 5 a 8 minutos](documentacao/APRESENTACAO.md)
+- [Base do relatório para revisão e preenchimento pelo grupo](documentacao/RELATORIO_BASE.md)
+- [Vídeos e capturas da demonstração de apoio web](documentacao/evidencias/index.html)
 - [Contrato da API](documentacao/API.md)
 - [Arquitetura, conceitos e diagramas preparatórios](documentacao/ARQUITETURA.md)
 - [Roteiro de testes e demonstração](documentacao/TESTES.md)

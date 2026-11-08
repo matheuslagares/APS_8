@@ -35,6 +35,14 @@ As evidências dessa execução no ambiente são `test-results/resultado.json`, 
 
 A exportação do Expo gerou bundles de aplicação para web (237 módulos, aproximadamente 452 KB), Android e iOS (596 módulos e aproximadamente 1,5 MB por plataforma). São bundles JavaScript/Hermes, não arquivos APK ou IPA instaláveis. A exportação valida o empacotamento do código, sem comprovar a execução em aparelhos físicos.
 
+### Ensaio de apoio e evidências preservadas
+
+Em 7 de novembro de 2026, das **21:54:03 às 21:54:20 (America/Sao_Paulo)**, o fluxo integrado foi executado novamente com gravação: **sete cenários passaram**, sem erros de JavaScript nas páginas. A suíte da API também passou novamente nos 21 testes, assim como lint e checagem de tipos. O resultado em UTC e os hashes do código estão em [evidencias/resultado.json](evidencias/resultado.json).
+
+Foram preservados dois vídeos WebM VP9 (cliente A: aproximadamente 15,0 segundos; cliente B: 9,0 segundos), oito capturas e o registro JSON. A [galeria local](evidencias/index.html) permite visualizar esse conjunto sem Internet. A abertura das oito imagens e a reprodução dos dois vídeos foram verificadas em Chromium; o layout foi conferido nas larguras de 390 e 1.280 pixels. Na nuvem, essa checagem usou um servidor HTTP local temporário para servir os arquivos da pasta.
+
+O conjunto usa dados fictícios e clientes web isolados. **A execução em dois celulares físicos com Expo Go permanece pendente.** As mídias selecionadas em `documentacao/evidencias/` são versionadas; os arquivos brutos de cada nova rodada em `test-results/` continuam locais e ignorados pelo Git. Não substitua evidências antigas por uma execução nova sem revisar também o registro e os hashes correspondentes.
+
 ## Teste integrado opcional da interface web
 
 O script `tests/fluxo_web.py` abre dois contextos de navegador com dimensões de celular e armazenamento isolado. Ele usa uma API real e um **banco temporário**, verifica o fluxo de cadastro/consulta/resolução e para e reinicia sua própria API para testar recuperação. Não substitui dois celulares físicos e não utiliza o banco de demonstração.
@@ -86,6 +94,20 @@ O teste cobre lista vazia, validação do formulário, preservação dos campos 
 
 Depois do teste, pare o Expo e remova a variável temporária do terminal antes de voltar ao celular. No CMD, use `set EXPO_PUBLIC_API_URL=`; no shell Linux/macOS, o prefixo usado acima se aplica apenas àquele comando. Configure novamente o IP real em `mobile/.env` e reinicie o Expo.
 
+### Gravação de apoio reproduzível
+
+Com os mesmos pré-requisitos do teste integrado, instale o FFmpeg pelo canal oficial do seu sistema e confira `ffmpeg -version`. Depois execute, na raiz:
+
+```sh
+python tests/fluxo_web.py --gravar
+```
+
+A opção grava as páginas Chromium usando CDP e o FFmpeg já instalado. Não baixa um codificador adicional. As pausas de leitura são usadas apenas durante a gravação. O teste continua verificando as condições da interface e o banco real temporário.
+
+São gerados `test-results/cliente-a.webm`, `cliente-b.webm`, oito capturas PNG e `resultado.json`. O relatório registra o início/fim em UTC, os sete cenários, os erros de JavaScript e os hashes SHA-256 dos arquivos de código exercitados. Um resultado de sucesso só é escrito após as verificações e a finalização dos vídeos. O banco da demonstração não é alterado.
+
+Os dois vídeos mostram clientes de navegador da mesma execução, com durações diferentes; não estão sincronizados para reprodução lado a lado. Não são gravações de Expo Go nem comprovam dois celulares físicos. Uma cópia selecionada das evidências fica em [evidencias/index.html](evidencias/index.html), identificada para uso como apoio. Abra o HTML com todos os arquivos da pasta juntos.
+
 ## Roteiro manual
 
 | Teste | Procedimento e resultado esperado | Estado inicial |
@@ -133,11 +155,11 @@ Não registre “passou” para testes apenas planejados. Se a API rodar na nuve
 ## Preparar a demonstração
 
 1. Pare a API e copie `backend/alagamentos.db` para um local de backup fora do Git. Copie também o código do projeto.
-2. Confirme com o professor se a apresentação pode usar Expo Go ou se exige APK. Este projeto usa o fluxo de desenvolvimento com Expo Go.
+2. O formato escolhido é Expo Go. Confira a compatibilidade do SDK 57 com o aplicativo instalado nos dois aparelhos.
 3. Confirme computador e celulares na mesma rede e verifique se a rede permite comunicação entre participantes.
 4. Ajuste o IPv4 da API em `mobile/.env` (`EXPO_PUBLIC_API_URL`) e reinicie o Expo.
 5. Ative o ambiente virtual e inicie a API com `--host=0.0.0.0 --port=5000`, sem depuração.
-6. Inicie o Expo no segundo terminal.
+6. Inicie o Expo no segundo terminal com `npx expo start --lan --port 8081 --clear`. Confira o IPv4 LAN no QR Code e o acesso do celular ao Node/Metro na porta 8081, além da API na 5000.
 7. Abra `/saude` no navegador do celular e depois abra o aplicativo no Expo Go.
 
 Durante a apresentação:

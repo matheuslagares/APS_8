@@ -1,6 +1,8 @@
 # Ambiente na nuvem
 
-O projeto foi instalado e validado nesta instância. A ferramenta de configuração não confirmou o salvamento de `install_script` e `start_skill`; portanto, estas instruções são uma cópia local para reutilização, e não comprovam publicação do ambiente.
+Durante a preparação inicial, a ferramenta não confirmou o salvamento de `install_script` e `start_skill`. Posteriormente, o usuário informou a publicação do ambiente. Na instância restaurada, o checkout e as dependências estavam presentes e os 21 testes da API, lint e checagem de tipos passaram novamente antes do envio do código ao GitHub.
+
+As instruções abaixo preservam a referência local de instalação e inicialização. Elas não foram reaplicadas ao rascunho publicado. Processos precisam ser iniciados novamente em cada instância.
 
 ## Script de instalação proposto
 
@@ -28,4 +30,4 @@ Interface: em /workspace/APS_8/mobile, para validação local web execute `EXPO_
 
 Verificações: em backend/ `.venv/bin/python -m unittest discover -s tests -v`; em mobile/ `npm run lint` e `npm run typecheck`. O teste opcional tests/fluxo_web.py usa SQLite temporário e inicia sua própria API: pare apenas a API que você iniciou antes do teste, mantendo Expo web na 8081. Leia documentacao/TESTES.md. Não apague bancos ou processos de outras pessoas. Relatos não são oficiais/verificados; sem login qualquer participante altera a situação. Testes web não substituem demonstração com dois celulares.
 
-Os arquivos estão preservados no repositório. A publicação e a restauração em uma nova tarefa ainda não foram verificadas.
+Os arquivos estão preservados no repositório. A publicação foi informada pelo usuário; a presença do projeto e o funcionamento das verificações acima foram observados na instância restaurada. Isso não comprova o acesso de celulares físicos à rede da nuvem.

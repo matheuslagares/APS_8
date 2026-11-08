@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Galeria de apoio da demonstração acadêmica Alerta de Alagamentos, com dados fictícios e clientes web isolados.">
+  <meta name="color-scheme" content="light">
+  <title>Evidências da demonstração · Alerta de Alagamentos</title>
+  <style>
+    /* A galeria funciona sem JavaScript, fontes remotas ou conexão à Internet. */
+    :root {
+      --fundo: #f1f6f7;
+      --papel: #fff;
+      --texto: #163344;
+      --secundario: #4d6571;
+      --borda: #cbdadf;
+      --verde: #166c51;
+      --verde-claro: #e5f3ec;
+      --amarelo-claro: #fff8df;
+      --amarelo-escuro: #725413;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--texto);
+      background: var(--fundo);
+      line-height: 1.6;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: var(--verde); text-underline-offset: .2em; }
+    a:hover { text-decoration-thickness: .15em; }
+    a:focus-visible, video:focus-visible {
+      outline: 3px solid var(--verde);
+      outline-offset: 5px;
+      border-radius: 4px;
+    }
+    .pular {
+      position: absolute;
+      left: 1rem;
+      top: -10rem;
+      padding: .75rem 1rem;
+      background: var(--papel);
+      z-index: 2;
+    }
+    .pular:focus { top: 1rem; }
+    .pagina { width: min(1160px, calc(100% - 3rem)); margin: 0 auto; }
+    .topo { border-top: 6px solid var(--verde); padding: 3rem 0 2rem; }
+    .marca {
+      color: var(--verde);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin: 0 0 1rem;
+    }
+    .abertura { display: grid; grid-template-columns: 1.65fr 1fr; gap: 2rem; align-items: start; }
+    h1 { font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.1; letter-spacing: -.035em; margin: 0 0 1.2rem; }
+    h2 { font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.2; letter-spacing: -.02em; margin: 0 0 .75rem; }
+    h3 { font-size: 1.1rem; margin: 0 0 .5rem; line-height: 1.35; }
+    p { margin: 0 0 1rem; }
+    .resumo { max-width: 65ch; font-size: 1.08rem; color: var(--secundario); }
+    .selo {
+      display: inline-block;
+      border-radius: 999px;
+      padding: .35rem .75rem;
+      background: var(--verde-claro);
+      color: var(--verde);
+      font-size: .8rem;
+      font-weight: 750;
+      margin: 0 .4rem .6rem 0;
+    }
+    .contexto { background: var(--papel); border: 1px solid var(--borda); border-radius: 18px; padding: 1.4rem; }
+    .contexto dl { margin: 0; }
+    .contexto dl > div + div { margin-top: 1rem; }
+    dt { color: var(--secundario); font-size: .82rem; }
+    dd { margin: .15rem 0 0; font-weight: 650; }
+    .pendente { color: var(--amarelo-escuro); }
+    .aviso {
+      border: 1px solid #e1d5aa;
+      border-left: 5px solid #b48922;
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      background: var(--amarelo-claro);
+      margin: 1.3rem 0 0;
+    }
+    .aviso p:last-child { margin: 0; }
+    .atalhos { display: flex; gap: 1rem 1.5rem; flex-wrap: wrap; padding: 1.2rem 0 0; font-size: .95rem; }
+    section { padding: 2.3rem 0; border-top: 1px solid var(--borda); }
+    .introducao { max-width: 76ch; color: var(--secundario); margin-bottom: 1.5rem; }
+    .videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+    figure { margin: 0; border: 1px solid var(--borda); background: var(--papel); border-radius: 16px; overflow: hidden; }
+    .video { padding: 1.1rem; }
+    .video video {
+      display: block;
+      width: 100%;
+      max-height: 580px;
+      aspect-ratio: 390 / 844;
+      object-fit: contain;
+      background: #102d40;
+      border-radius: 10px;
+    }
+    figcaption { padding: 1rem 1.1rem 1.15rem; }
+    .video figcaption { padding: 1rem 0 0; }
+    figcaption p { color: var(--secundario); font-size: .92rem; margin-bottom: .65rem; }
+    .arquivo { display: inline-block; font-size: .88rem; }
+    .capturas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+    .capturas img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--borda); background: #edf2f4; }
+    .passo { display: block; color: var(--verde); font-size: .75rem; font-weight: 800; letter-spacing: .1em; margin-bottom: .35rem; text-transform: uppercase; }
+    .documentos { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.2rem 0; }
+    .documentos a { border: 1px solid var(--borda); border-radius: 10px; padding: .65rem .9rem; background: var(--papel); font-weight: 650; }
+    .nota { font-size: .9rem; color: var(--secundario); }
+    footer { padding: 1.8rem 0 2.5rem; border-top: 1px solid var(--borda); color: var(--secundario); font-size: .85rem; }
+    footer p { margin: 0; }
+    @media (max-width: 900px) {
+      .abertura { grid-template-columns: 1fr; gap: 1rem; }
+      .capturas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      .pagina { width: calc(100% - 2rem); }
+      .topo { padding-top: 2rem; }
+      .videos, .capturas { grid-template-columns: 1fr; }
+      .video video { max-height: 610px; }
+      .capturas figure { width: min(100%, 390px); justify-self: center; }
+      .documentos { flex-direction: column; align-items: flex-start; }
+    }
+    /* Na impressão, os links preservam o acesso aos arquivos de vídeo. */
+    @media print {
+      :root { background: white; color: #111; font-size: 10pt; }
+      .pagina { width: 100%; }
+      .topo { border-top: 0; padding-top: 0; }
+      .pular, .atalhos, video { display: none !important; }
+      .abertura { grid-template-columns: 1.5fr 1fr; }
+      .capturas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .videos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      figure, .contexto, .aviso { break-inside: avoid; }
+      section { padding: 1.2rem 0; }
+      a { color: #111; }
+      .arquivo::after { content: " (" attr(href) ")"; font-size: .8em; }
+      .nota, figcaption p, footer { color: #333; }
+    }
+  </style>
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topo">
+    <div class="pagina">
+      <p class="marca">Alerta de Alagamentos · projeto acadêmico</p>
+      <div class="abertura">
+        <div>
+          <h1>Evidências da demonstração</h1>
+          <p class="resumo">Gravações de apoio e capturas do fluxo de cadastro, consulta e alteração da situação de relatos. Todos os dados apresentados são fictícios.</p>
+          <span class="selo">Dados fictícios</span>
+          <span class="selo">Apoio em Chromium</span>
+        </div>
+        <aside class="contexto" aria-label="Contexto da demonstração">
+          <dl>
+            <div><dt>Formato da entrega móvel</dt><dd>Aplicativo pelo Expo Go</dd></div>
+            <div><dt>Ambiente destas evidências</dt><dd>Versão web em dois clientes isolados do Chromium</dd></div>
+            <div><dt>Ensaio em dois celulares com Expo Go</dt><dd class="pendente">Pendente de execução e registro pelo grupo</dd></div>
+          </dl>
+        </aside>
+      </div>
+      <div class="aviso" role="note">
+        <p><strong>Esta galeria não comprova uso em dois celulares.</strong> Os vídeos registram clientes de navegador da mesma execução de teste. A compatibilidade e o fluxo físico no Expo Go ainda precisam ser validados nos aparelhos da apresentação.</p>
+      </div>
+      <nav class="atalhos" aria-label="Seções da galeria">
+        <a href="#gravacoes">Gravações de apoio</a>
+        <a href="#capturas">Capturas do fluxo</a>
+        <a href="#registro">Registro e documentação</a>
+      </nav>
+    </div>
+  </header>
+  <main class="pagina" id="conteudo">
+    <section id="gravacoes" aria-labelledby="titulo-gravacoes">
+      <h2 id="titulo-gravacoes">Dois clientes, o mesmo servidor</h2>
+      <p class="introducao">Cada vídeo corresponde a um cliente isolado do navegador. Use os controles para acompanhar as ações. A reprodução é independente: os vídeos não começam automaticamente e não têm sincronização temporal entre si. Não há narração; as legendas abaixo descrevem o contexto.</p>
+      <div class="videos">
+        <figure class="video">
+          <video controls preload="metadata" playsinline poster="00-lista-vazia.png" width="390" height="844" aria-label="Gravação de apoio do cliente A no Chromium" aria-describedby="legenda-cliente-a">
+            <source src="cliente-a.webm" type="video/webm">
+            Seu navegador não reproduz este vídeo. <a href="cliente-a.webm">Abra a gravação do cliente A.</a>
+          </video>
+          <figcaption id="legenda-cliente-a">
+            <h3>Cliente A · cadastro e consultas</h3>
+            <p>Acompanhe o preenchimento do relato fictício e as consultas à API pela interface web.</p>
+            <a class="arquivo" href="cliente-a.webm">Abrir vídeo do cliente A (.webm)</a>
+          </figcaption>
+        </figure>
+        <figure class="video">
+          <video controls preload="metadata" playsinline poster="02-detalhes.png" width="390" height="844" aria-label="Gravação de apoio do cliente B no Chromium" aria-describedby="legenda-cliente-b">
+            <source src="cliente-b.webm" type="video/webm">
+            Seu navegador não reproduz este vídeo. <a href="cliente-b.webm">Abra a gravação do cliente B.</a>
+          </video>
+          <figcaption id="legenda-cliente-b">
+            <h3>Cliente B · detalhes e situação</h3>
+            <p>Acompanhe a consulta do mesmo relato por outro cliente e a ação de marcar como resolvido.</p>
+            <a class="arquivo" href="cliente-b.webm">Abrir vídeo do cliente B (.webm)</a>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+    <section id="capturas" aria-labelledby="titulo-capturas">
+      <h2 id="titulo-capturas">O fluxo, etapa por etapa</h2>
+      <p class="introducao">As imagens ajudam a localizar os estados da interface. Consulte o registro da execução para os resultados das verificações; uma captura isolada não comprova persistência nem comunicação entre dispositivos físicos.</p>
+      <div class="capturas">
+        <figure>
+          <a href="00-lista-vazia.png" aria-label="Ampliar captura da lista vazia"><img src="00-lista-vazia.png" width="390" height="844" loading="lazy" decoding="async" alt="Tela Ocorrências sem relatos cadastrados, com ações Nova ocorrência e Atualizar."></a>
+          <figcaption><span class="passo">01 · início</span><h3>Lista vazia</h3><p>Estado inicial da consulta, antes do cadastro fictício.</p></figcaption>
+        </figure>
+        <figure>
+          <a href="01-cadastro.png" aria-label="Ampliar captura do formulário"><img src="01-cadastro.png" width="390" height="844" loading="lazy" decoding="async" alt="Formulário Novo registro com campos de bairro, endereço, descrição e gravidade."></a>
+          <figcaption><span class="passo">02 · cadastro</span><h3>Preenchimento</h3><p>Dados fictícios preparados para envio à API.</p></figcaption>
+        </figure>
+        <figure>
+          <a href="01b-falha-envio.png" aria-label="Ampliar captura da falha de envio"><img src="01b-falha-envio.png" width="390" height="844" loading="lazy" decoding="async" alt="Formulário exibindo uma mensagem de falha de envio sem apagar os campos preenchidos."></a>
+          <figcaption><span class="passo">03 · tratamento de erro</span><h3>Falha no envio</h3><p>Mensagem de erro e preservação dos dados digitados.</p></figcaption>
+        </figure>
+        <figure>
+          <a href="02-detalhes.png" aria-label="Ampliar captura dos detalhes"><img src="02-detalhes.png" width="390" height="844" loading="lazy" decoding="async" alt="Detalhes do relato com identificador, endereço, descrição, gravidade, situação e data de cadastro."></a>
+          <figcaption><span class="passo">04 · consulta</span><h3>Detalhes do relato</h3><p>Informações retornadas pelo servidor ao consultar o identificador.</p></figcaption>
+        </figure>
+        <figure>
+          <a href="02b-resolvido.png" aria-label="Ampliar captura da situação resolvida"><img src="02b-resolvido.png" width="390" height="844" loading="lazy" decoding="async" alt="Tela de detalhes apresentando a situação Resolvido após a atualização pela API."></a>
+          <figcaption><span class="passo">05 · atualização</span><h3>Situação resolvida</h3><p>Resposta exibida depois da alteração enviada ao servidor.</p></figcaption>
+        </figure>
+        <figure>
+          <a href="03-lista.png" aria-label="Ampliar captura da lista atualizada"><img src="03-lista.png" width="390" height="844" loading="lazy" decoding="async" alt="Lista de ocorrências atualizada com o relato fictício e sua situação."></a>
+          <figcaption><span class="passo">06 · nova consulta</span><h3>Lista atualizada</h3><p>O outro cliente consulta novamente para obter a situação salva.</p></figcaption>
+        </figure>
+        <figure>
+          <a href="04-api-desligada.png" aria-label="Ampliar captura com a API desligada"><img src="04-api-desligada.png" width="390" height="844" loading="lazy" decoding="async" alt="Lista mostrando erro de comunicação com o servidor e a opção Tentar novamente."></a>
+          <figcaption><span class="passo">07 · falha parcial</span><h3>API indisponível</h3><p>A interface permanece aberta e informa a falha de consulta.</p></figcaption>
+        </figure>
+        <figure>
+          <a href="05-recuperacao.png" aria-label="Ampliar captura da recuperação"><img src="05-recuperacao.png" width="390" height="844" loading="lazy" decoding="async" alt="Lista voltando a apresentar o relato depois da retomada da API e de uma nova consulta."></a>
+          <figcaption><span class="passo">08 · recuperação</span><h3>Nova tentativa</h3><p>Consulta repetida após reiniciar a API, mantendo o mesmo banco.</p></figcaption>
+        </figure>
+      </div>
+    </section>
+    <section id="registro" aria-labelledby="titulo-registro">
+      <h2 id="titulo-registro">Registro e próximos passos</h2>
+      <p class="introducao">O arquivo de resultado reúne os dados da execução automatizada que acompanha estas mídias. Confira esse registro e a documentação antes de relatar quais verificações passaram. O ensaio com dois celulares e Expo Go deve receber seu próprio registro, com aparelhos, versões, data e responsáveis.</p>
+      <div class="documentos" aria-label="Arquivos de apoio">
+        <a href="resultado.json">Resultado da execução (.json)</a>
+        <a href="../APRESENTACAO.md">Roteiro da apresentação</a>
+        <a href="../TESTES.md">Testes e pendências</a>
+        <a href="../ENTREGA.md">Checklist de entrega</a>
+      </div>
+      <p class="nota">Mantenha esta página, as imagens, os vídeos e o arquivo de resultado na mesma pasta ao copiar a galeria. Os arquivos são locais; nenhum serviço externo é necessário para visualizar este material.</p>
+    </section>
+  </main>
+  <footer>
+    <div class="pagina">
+      <p><strong>Relatos de usuários, sem verificação.</strong> Não são alertas oficiais. Sem login, qualquer participante do protótipo pode alterar a situação. A atualização entre clientes ocorre por uma nova consulta, sem sincronização em tempo real.</p>
+    </div>
+  </footer>
+</body>
+</html>
