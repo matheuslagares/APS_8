@@ -1,0 +1,65 @@
+@startuml atividades_cadastro
+title REFERÊNCIA TÉCNICA — VALIDAR PELO GRUPO\n04. Atividades do cadastro de um relato
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam ArrowColor #40566C
+skinparam activityBackgroundColor #F1F6FA
+skinparam activityBorderColor #40566C
+scale max 780*1100
+
+start
+:Participante com sessão válida\nabre Novo registro;
+repeat
+  :Preenche ou revisa bairro,\nendereço, descrição e gravidade;
+  if (Escolhe usar GPS?) then (sim)
+    :Solicita permissão em primeiro plano;
+    if (Permissão concedida?) then (sim)
+      :Tenta obter coordenadas\ncom prazo de 15 segundos;
+      if (Posição válida recebida?) then (sim)
+        :Associa latitude e longitude\nao formulário;
+      else (não)
+        :Mostra falha do GPS;\npermite continuar sem localização;
+      endif
+    else (não)
+      :Mostra aviso de permissão;\npermite continuar sem localização;
+    endif
+  endif
+  if (Escolhe anexar mídia?) then (sim)
+    :Seleciona uma foto ou um vídeo\ne mantém a seleção no formulário;
+  endif
+  :Toca em Salvar;
+  if (Textos obrigatórios preenchidos?) then (sim)
+    :Bloqueia novo envio e\nmostra Salvando;
+    :Envia textos, GPS e anexo opcionais\ncom Bearer à API;
+    :API autentica e valida; tenta gravar\nrelato e anexo como uma operação;
+    if (Cliente recebeu confirmação 201?) then (sim)
+      :Libera o envio; fecha o formulário;
+      :Reconsulta a lista;
+      :Exibe o relato após a consulta\nou informa falha na atualização;
+      stop
+    else (não)
+      :Libera o envio e mostra o erro;
+      if (API recusou a sessão com 401?) then (sim)
+        :Controle geral limpa a sessão\ne solicita novo login;
+        stop
+      else (não)
+        :Mantém os campos e a seleção\npara correção ou nova tentativa;
+      endif
+    endif
+  else (não)
+    :Mostra mensagem de campos obrigatórios;\nnão envia o pedido;
+  endif
+repeat while (Deseja revisar ou tentar novamente?) is (sim) not (não)
+:Pode voltar sem concluir o cadastro;
+stop
+
+legend bottom
+  Fluxo técnico, não protocolo de teste físico.
+  GPS e anexo são opcionais; não há coleta em segundo plano.
+  Se a resposta se perder após o commit, consulte a lista antes de repetir.
+endlegend
+
+footer Esboço assistido por IA; revisar com o código antes de usar.\nFontes: CadastroScreen.js; LocalizacaoCampos.js; SeletorAnexo.js; backend/app.py.
+@enduml

@@ -1,0 +1,52 @@
+@startuml sequencia_cadastro
+ title REFERÊNCIA TÉCNICA — VALIDAR PELO GRUPO\n03. Cadastro autenticado com anexo opcional
+ skinparam defaultFontName SansSerif
+ skinparam defaultFontSize 13
+ skinparam shadowing false
+ skinparam backgroundColor white
+ skinparam ArrowColor #40566C
+ skinparam ParticipantBackgroundColor #F1F6FA
+ skinparam sequenceMessageAlign center
+ skinparam responseMessageBelowArrow true
+ scale max 740*850
+
+ actor Pessoa
+ participant Aplicativo as App
+ participant "API Flask" as API
+ database SQLite as DB
+ collections "uploads/\nprivado" as Arquivos
+
+ Pessoa -> App : Salvar relato
+ App -> API : POST /ocorrencias\nBearer + JSON ou multipart
+ API -> DB : SELECT sessão e usuário\nhash do token + validade
+ DB --> API : Conta da sessão válida
+ API -> API : Valida textos, GPS\ne quantidade de arquivos
+ opt Anexo enviado e válido
+   API -> Arquivos : Valida conteúdo; grava UUID\n(foto recriada sem EXIF)
+   Arquivos --> API : Arquivo preparado
+ end
+ API -> DB : INSERT relato com autor\ne anexo opcional; SELECT resposta
+ alt Transação sem falha
+   API -> DB : COMMIT
+   API --> App : 201 + relato criado
+   App -> App : Reconsulta a lista
+   App --> Pessoa : Mostra resultado atualizado
+ else Falha de INSERT, SELECT ou COMMIT
+   API -> DB : ROLLBACK
+   opt Arquivo havia sido preparado
+     API -> Arquivos : Apaga o arquivo preparado
+   end
+   API --> App : 500 + erro JSON
+   App --> Pessoa : Mostra erro; mantém formulário
+ end
+
+ note over App, Arquivos
+   Pré-condição: participante com sessão válida.
+   Sessão ou dados/mídia recusados: 401, 400, 413 ou 415,
+   antes do INSERT. Falha ao gravar arquivo: 500, sem relato.
+   Resposta perdida após COMMIT pode deixar registro salvo
+   sem confirmação. Não há chave de idempotência.
+ end note
+
+ footer Esboço assistido por IA; revisar com o código antes de usar.\nFontes: backend/app.py:37–62, 233–273; database.py; midia.py.
+@enduml

@@ -1,0 +1,88 @@
+{
+  "verificado_em_utc": "2026-11-08T23:23:18+00:00",
+  "natureza": "Verificação da paginação reservada e integridade de um modelo preenchível, não do trabalho acadêmico final.",
+  "paginas_pdf_modelo": 29,
+  "paginas_pdf_codigo_selecionado": 6,
+  "checagens": [
+    {
+      "secao": "objetivo",
+      "paginas_reservadas": 1,
+      "intervalo_modelo": [
+        3
+      ],
+      "minimo_rubrica": 1,
+      "maximo_rubrica": 2
+    },
+    {
+      "secao": "introducao",
+      "paginas_reservadas": 2,
+      "intervalo_modelo": [
+        4,
+        5
+      ],
+      "minimo_rubrica": 2,
+      "maximo_rubrica": 4
+    },
+    {
+      "secao": "fundamentos",
+      "paginas_reservadas": 4,
+      "intervalo_modelo": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "minimo_rubrica": 4,
+      "maximo_rubrica": 8
+    },
+    {
+      "secao": "plano",
+      "paginas_reservadas": 5,
+      "intervalo_modelo": [
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "minimo_rubrica": 5,
+      "maximo_rubrica": 15
+    },
+    {
+      "secao": "projeto",
+      "paginas_reservadas": 6,
+      "intervalo_modelo": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "minimo_rubrica": 3,
+      "maximo_rubrica": 8
+    },
+    {
+      "secao": "codigo",
+      "paginas_reservadas": 6,
+      "intervalo_modelo": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "minimo_rubrica": null,
+      "maximo_rubrica": 10
+    }
+  ],
+  "limites_da_conclusao": [
+    "Espaços e perguntas não substituem a redação nem comprovam o mínimo de conteúdo.",
+    "Depois da edição, conferir novamente páginas, índice e formatação institucional.",
+    "Código é seleção de 135 linhas, não o fonte completo de 2.096 linhas de produção.",
+    "O ZIP não foi criado com WinRAR e não é o pacote .doc pedido para upload.",
+    "Autoria/uso de IA dependem da orientação do professor; este modelo não atesta aceitação.",
+    "Ficha oficial, horas reais e assinaturas manuscritas continuam a cargo de cada aluno."
+  ]
+}

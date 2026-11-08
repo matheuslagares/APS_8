@@ -119,8 +119,8 @@ flowchart TD
     E[Entrar ou criar conta] --> A[Abrir ocorrências]
     A --> B[Consultar API com sessão]
     B --> C{Resposta recebida?}
-    C -->|Não| E[Mostrar erro e tentar novamente]
-    E --> B
+    C -->|Não| FALHA[Mostrar erro e tentar novamente]
+    FALHA --> B
     C -->|Sim| L[Mostrar lista ou mensagem de lista vazia]
     L --> N[Nova ocorrência]
     N --> F[Preencher formulário]
@@ -147,7 +147,7 @@ O modelo atual guarda contas, sessões, relatos e os metadados dos anexos:
 erDiagram
     usuarios ||--o{ sessoes : possui
     usuarios o|--o{ ocorrencias : autoria
-    ocorrencias ||--o| anexos : possui
+    ocorrencias ||--o{ anexos : associa
     usuarios {
         INTEGER id PK
         TEXT nome
@@ -181,6 +181,8 @@ erDiagram
         INTEGER tamanho
     }
 ```
+
+O DER representa a cardinalidade física: uma ocorrência pode ter vários registros de anexo no banco, pois `ocorrencia_id` não é UNIQUE. A API atual restringe o cadastro a um único anexo por requisição. A restrição CHECK do par de coordenadas existe no schema novo; na migração de bancos antigos o par também é validado pela API.
 
 Os textos do relato são obrigatórios. `gravidade` aceita `baixa`, `media` e `alta`. `situacao` aceita `ativo` e `resolvido`, com padrão `ativo`. O servidor preenche a data e a autoria. As coordenadas são opcionais e devem existir em par. `NOT NULL` evita nulos nos campos exigidos; a validação da API também rejeita textos vazios. O inicializador preserva dados existentes e migra a estrutura da primeira versão. Relatos antigos ficam com `autor_id` nulo.
 

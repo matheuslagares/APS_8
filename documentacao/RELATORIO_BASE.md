@@ -1,5 +1,7 @@
 # Alerta de Alagamentos — base para o relatório
 
+**Material de apoio assistido por IA; não é a redação final para entrega.** A rubrica recebida no item 6 exige esclarecer com o professor a aceitação desse auxílio. Use o [modelo preenchível e o guia da rubrica](GUIA_RUBRICA_UNIP.md) para organizar a redação própria do grupo.
+
 Este texto organiza a parte técnica já implementada. O grupo deve revisar a redação, completar os campos em branco e adequar o documento às normas e à rubrica recebidas. Ele não comprova, por si só, o atendimento a exigências acadêmicas que ainda não foram fornecidas.
 
 ## Identificação — preencher com dados reais
