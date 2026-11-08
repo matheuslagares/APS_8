@@ -30,8 +30,14 @@ class OcorrenciasTest(unittest.TestCase):
         self.addCleanup(self.pasta.cleanup)
         self.banco = Path(self.pasta.name) / "teste.db"
         inicializar_banco(self.banco)
-        self.app = create_app({"TESTING": True, "DATABASE": str(self.banco)})
+        self.app = create_app({"TESTING": True, "DATABASE": str(self.banco),
+                               "UPLOAD_FOLDER": str(Path(self.pasta.name) / "uploads")})
         self.cliente = self.app.test_client()
+        sessao = self.cliente.post("/auth/cadastro", json={
+            "nome": "Pessoa de teste", "email": "pessoa@example.com", "senha": "senha-teste-123",
+        }).get_json()
+        self.token = sessao["token"]
+        self.cliente.environ_base["HTTP_AUTHORIZATION"] = f"Bearer {self.token}"
         self.dados = {
             "bairro": "Centro",
             "endereco": "Rua das Flores, 10",
@@ -55,7 +61,10 @@ class OcorrenciasTest(unittest.TestCase):
         ocorrencia = resposta.get_json()
         self.assertIsInstance(ocorrencia["id"], int)
         self.assertEqual(ocorrencia["situacao"], "ativo")
-        self.assertEqual(set(ocorrencia), set(self.dados) | {"id", "situacao", "criado_em"})
+        self.assertEqual(set(ocorrencia), set(self.dados) | {
+            "id", "situacao", "criado_em", "autor_id", "pode_alterar", "latitude", "longitude", "anexos",
+        })
+        self.assertTrue(ocorrencia["pode_alterar"])
         self.assertEqual(datetime.fromisoformat(ocorrencia["criado_em"]).utcoffset().total_seconds(), 0)
         identificador = ocorrencia["id"]
         self.assertEqual(self.cliente.get("/ocorrencias").get_json(), [ocorrencia])
@@ -74,7 +83,9 @@ class OcorrenciasTest(unittest.TestCase):
     def test_persistencia_em_nova_instancia(self):
         ocorrencia = self.criar().get_json()
         outro_app = create_app({"TESTING": True, "DATABASE": str(self.banco)})
-        resposta = outro_app.test_client().get(f"/ocorrencias/{ocorrencia['id']}")
+        resposta = outro_app.test_client().get(
+            f"/ocorrencias/{ocorrencia['id']}", headers={"Authorization": f"Bearer {self.token}"}
+        )
         self.assertEqual(resposta.status_code, 200)
         self.assertEqual(resposta.get_json(), ocorrencia)
 
@@ -244,6 +255,7 @@ class OcorrenciasTest(unittest.TestCase):
         self.assertEqual(resposta.status_code, 200)
         self.assertEqual(resposta.headers["Access-Control-Allow-Origin"], "http://localhost:8081")
         self.assertIn("Content-Type", resposta.headers["Access-Control-Allow-Headers"])
+        self.assertIn("Authorization", resposta.headers["Access-Control-Allow-Headers"])
         self.assertIn("PATCH", resposta.headers["Access-Control-Allow-Methods"])
         bloqueada = self.cliente.get("/saude", headers={"Origin": "https://desconhecido.example"})
         self.assertNotIn("Access-Control-Allow-Origin", bloqueada.headers)

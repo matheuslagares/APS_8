@@ -1,4 +1,6 @@
-# Evidências da demonstração de apoio
+# Evidências históricas da primeira versão
+
+Este conjunto é anterior ao login, GPS, mapas e anexos. Não comprova as funções novas nem a regra atual de alteração exclusiva pelo autor.
 
 Execução automatizada de 07/11/2026, das 21:54:03 às 21:54:20 (America/Sao_Paulo). O JSON preserva os horários em UTC.
 

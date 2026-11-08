@@ -2,7 +2,7 @@
   "expo": {
     "name": "Alerta de Alagamentos",
     "slug": "alerta-de-alagamentos",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -19,6 +19,24 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-video",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Permita usar sua localização apenas ao incluir o GPS em um relato."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Selecione uma foto ou vídeo para anexar ao seu relato.",
+          "cameraPermission": false,
+          "microphonePermission": false
+        }
+      ]
+    ]
   }
 }

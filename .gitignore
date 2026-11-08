@@ -4,6 +4,7 @@ __pycache__/
 *.py[cod]
 backend/*.db
 backend/*.db-*
+backend/uploads/
 mobile/node_modules/
 mobile/.expo/
 mobile/dist/

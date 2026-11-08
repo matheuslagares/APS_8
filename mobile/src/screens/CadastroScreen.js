@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { criarOcorrencia } from '../services/api';
+import LocalizacaoCampos from '../components/LocalizacaoCampos';
+import SeletorAnexo from '../components/SeletorAnexo';
 import { AvisoRelatos, Botao, Cabecalho, Mensagem } from '../components/Interface';
 import { cores, estilos, gravidades } from '../theme';
 
@@ -9,6 +11,8 @@ export default function CadastroScreen({ onVoltar, onSalvo, onOcupadoChange }) {
   const [endereco, setEndereco] = useState('');
   const [descricao, setDescricao] = useState('');
   const [gravidade, setGravidade] = useState('media');
+  const [localizacao, setLocalizacao] = useState(null);
+  const [anexo, setAnexo] = useState(null);
   const [salvando, setSalvando] = useState(false);
   const [erro, setErro] = useState('');
   const envioEmAndamento = useRef(false);
@@ -17,6 +21,7 @@ export default function CadastroScreen({ onVoltar, onSalvo, onOcupadoChange }) {
     if (envioEmAndamento.current) return;
     const dados = {
       bairro: bairro.trim(), endereco: endereco.trim(), descricao: descricao.trim(), gravidade,
+      ...(localizacao || {}),
     };
     if (!dados.bairro || !dados.endereco || !dados.descricao) {
       setErro('Preencha bairro, endereço e descrição.');
@@ -29,7 +34,8 @@ export default function CadastroScreen({ onVoltar, onSalvo, onOcupadoChange }) {
     setErro('');
     try {
       // Identificador, data e situação inicial são definidos pela API, não pelo celular.
-      await criarOcorrencia(dados);
+      // Texto, coordenadas e anexo formam um único cadastro confirmado pela API.
+      await criarOcorrencia(dados, anexo);
       onSalvo();
     } catch (falha) {
       // Os campos permanecem preenchidos para a pessoa corrigir ou tentar novamente.
@@ -44,7 +50,7 @@ export default function CadastroScreen({ onVoltar, onSalvo, onOcupadoChange }) {
   return (
     <KeyboardAvoidingView style={estilos.tela} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={locais.rolagem}>
-        <Cabecalho titulo="Novo registro" descricao="Descreva o que você observou. Todos os campos são obrigatórios." />
+        <Cabecalho titulo="Novo registro" descricao="Preencha os dados do relato. Localização e anexo são opcionais." />
         <View style={locais.conteudo}>
           <AvisoRelatos />
           <View style={locais.grupo}>
@@ -90,6 +96,8 @@ export default function CadastroScreen({ onVoltar, onSalvo, onOcupadoChange }) {
               ))}
             </View>
           </View>
+          <LocalizacaoCampos value={localizacao} onChange={setLocalizacao} disabled={salvando} />
+          <SeletorAnexo value={anexo} onChange={setAnexo} disabled={salvando} />
           <Mensagem texto={erro} erro />
           <Botao titulo={salvando ? 'Salvando…' : 'Salvar'} onPress={salvar} carregando={salvando} />
           <Botao titulo="Voltar" onPress={onVoltar} secundario disabled={salvando} />

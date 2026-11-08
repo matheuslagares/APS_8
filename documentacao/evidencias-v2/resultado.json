@@ -1,0 +1,63 @@
+{
+  "versao": 2,
+  "resultado": "passou",
+  "inicio_utc": "2026-11-08T01:43:30+00:00",
+  "fim_utc": "2026-11-08T01:43:47+00:00",
+  "casos": [
+    "Acesso sem sessão exige login e API recusa consulta anônima",
+    "Login inválido apresenta mensagem sem conceder acesso",
+    "Cadastro de conta A inicia sessão e consulta lista vazia",
+    "Formulário valida obrigatórios e recebe GPS simulado e foto PNG",
+    "Falha de rede preserva texto, coordenadas e anexo sem criar registro",
+    "Multipart cria um único relato com autoria, GPS e imagem privada",
+    "Mapa renderiza ponto salvo e oferece lista quando tiles são bloqueados no teste",
+    "Conta B consulta imagem autenticada e é impedida de resolver relato de A",
+    "Somente A resolve seu relato e B recebe a alteração após atualizar",
+    "Vídeo MP4 real é enviado, protegido e reproduzido sem exigir GPS",
+    "Sair revoga o token e novo login recupera a conta do autor",
+    "Recarregar a versão web exige novo login sem credencial em armazenamento local",
+    "API desligada mostra erro e mantém a sessão para nova tentativa",
+    "Reiniciar API preserva contas, sessões, situação, GPS e os dois arquivos",
+    "Sessão revogada no servidor retorna à tela de acesso ao receber HTTP 401"
+  ],
+  "erros_javascript": 0,
+  "videos": [
+    "cliente-a.webm",
+    "cliente-b.webm"
+  ],
+  "sha256_codigo": {
+    "backend/app.py": "25bffe831336ee7fc7307e4d40908ffe9419a5b1d9952b6b70e2896399fda1bd",
+    "backend/autenticacao.py": "143f1d03750bc7435ed5c913718e572ab57fc178df6b70a0cc9e0ec8558211c5",
+    "backend/database.py": "5a235f0f651af6483fd26fcbe6175a7e27ab2bbe7643681b67d7d7359cef1488",
+    "backend/init_db.py": "f7f3c8e5d806458f2c1473256587fce75c6fce156509d2be2ca190d773a650e9",
+    "backend/midia.py": "b7e1859060676f4c457f88543449fe3b494ca800ebb3c1934a3e10b45c968492",
+    "backend/requirements.txt": "4166834541a9a282794f6fbd92c726f069c9fcd04f1fb190c426ee7ec4a38f09",
+    "backend/schema.sql": "92815bf718311880978276a969ed0ad5c4870915152934a424fc8c12f5afab59",
+    "mobile/App.js": "082069eb7baf6fcb7b2760f94f241d44878b60d2fd61f2e9234e3078a0621cff",
+    "mobile/app.json": "85cb4a79950b198d3a1b6815d8a2c0a8a648c39d25411590e44493946506e535",
+    "mobile/package-lock.json": "43c3fc576dc1392345e2dce2994755a963cbce4c32a0b34f256a18cb6031d078",
+    "mobile/src/components/AnexoViewer.js": "4a1c62528350a17cdaf48be907c616ad70c4b3e41300e022de81bbf0d7738d2f",
+    "mobile/src/components/Interface.js": "a67468871486b556e5b23eed410cfb54834168ed3a3be1dbf956d61d495dd0c7",
+    "mobile/src/components/LocalizacaoCampos.js": "4b4c9c712a30d727e24a086e8ef005fac61d0dd90bda5b3d101db6cfb330d7c3",
+    "mobile/src/components/MapaOcorrencias.native.js": "0b7f3c6e8111d0d3d349f6da957216b5c59e978476c304e26947d9e2c7a45912",
+    "mobile/src/components/MapaOcorrencias.web.js": "249aee03da00935a2433a444733a51e56fe49765d7606d893e30ae02ba729d11",
+    "mobile/src/components/SeletorAnexo.js": "e74230ea83426759c74009256d99f233d91cdabde75cbace3caba15a657c0045",
+    "mobile/src/config.js": "a594a09392a220237f4c987f921e184d2dabdaba8c263b34aa451bd40edef3a0",
+    "mobile/src/screens/AuthScreen.js": "d41d2d6d797d3a4f8888f5c0d8f5187ddf426b36a9074bbf84010c215a89b8cc",
+    "mobile/src/screens/CadastroScreen.js": "b484fde16919f2215bf581117f1b7bcab1d7e99cce74b0656b5fabb22c4fb468",
+    "mobile/src/screens/DetalhesScreen.js": "c8b8ac70f60cf50496e2ecf3a16f41386560b876192a6284c0f4af99cc583d03",
+    "mobile/src/screens/ListaScreen.js": "5d3232a98cd3807a97b07a5966ca014d33c698d486b0dacd4bf2d7b8e854aa07",
+    "mobile/src/services/api.js": "f878125e70188d44e5377834091a52a5ee53f32726d3ec7a5ed85da96426ccac",
+    "mobile/src/theme.js": "39944b8e1c8ca8724b820336d49e095002e1667558580b330afb0d0b732b6eb2",
+    "tests/fixtures/foto-teste.png": "5f3e26a132b064d3259dfcd6c7081c96a3e6ed67c9798157220a0aaf5f09af6a",
+    "tests/fixtures/video-teste.mp4": "9d02923514aca37d834e6a1fd9f1d44089c529661ad64b24947d975f7b6a2513",
+    "tests/fluxo_web.py": "9b0df613dcefde09076616469eaf027b0230153334585d1bf2a638457577e3a5",
+    "tests/gravacao.py": "dc85ff3c43caad5ebd68d2d4c65ab3e51c409aaba4af09d02d93b14855b0c4a5"
+  },
+  "limitacoes": [
+    "Dados e contas fictícios em dois contextos isolados de Chromium; não são celulares físicos.",
+    "Coordenadas fornecidas pelo simulador de geolocalização do navegador, sem teste de GPS real.",
+    "Tiles OpenStreetMap deliberadamente bloqueados: valida pontos e fallback, não o mapa base online.",
+    "SecureStore e mapas nativos do Expo Go exigem validação no aparelho."
+  ]
+}

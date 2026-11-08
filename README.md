@@ -2,7 +2,9 @@
 
 Protótipo acadêmico para **registrar e consultar relatos de alagamentos urbanos**. As informações são fornecidas pelos participantes: **não são alertas oficiais nem ocorrências verificadas**.
 
-O aplicativo tem três telas: **Ocorrências**, **Novo registro** e **Detalhes**. Permite cadastrar um relato, consultar os dados e marcar sua situação como resolvida. A API guarda os registros em SQLite no computador; o celular sempre acessa os dados pela API.
+A versão atual acrescenta **cadastro e login**, **localização opcional com GPS e mapa** e **uma foto ou um vídeo opcional por relato** ao fluxo de Ocorrências, Novo registro e Detalhes. Somente o autor autenticado pode resolver seu relato. A API guarda os registros em SQLite e os anexos no computador; o celular acessa os dados e os arquivos pela API.
+
+Os registros da versão inicial são preservados na migração. Como não têm autor identificado, ficam disponíveis para consulta, sem atribuição automática a uma conta e sem alteração de situação.
 
 ## Estrutura
 
@@ -16,11 +18,12 @@ documentacao/     Contrato da API, conceitos, diagramas e roteiro de testes
 flowchart LR
     A[Celular: aplicativo Expo] -->|HTTP e JSON| B[Computador: API Flask]
     B -->|SQL| C[(SQLite: alagamentos.db)]
+    B --> D[Anexos privados: uploads]
 ```
 
 ## Preparar o computador
 
-Instale Python 3.10 ou superior, Node.js LTS e Git. A versão de Node usada nos testes foi **24.22.1**, registrada em `mobile/.nvmrc`. Use um editor como VS Code. O projeto usa **Expo SDK 57** (`expo ~57.0.32`), **React 19.2.3** e **React Native 0.86.3**, a partir do template oficial blank. No Android, instale Expo Go e confira a compatibilidade com esse SDK em [expo.dev/go](https://expo.dev/go). O arquivo de dependências e o lockfile definem a combinação usada pelo projeto; não atualize pacotes aleatoriamente para corrigir incompatibilidades.
+Instale Python 3.11 ou superior (testado com 3.12.14), Node.js LTS e Git. A versão de Node usada nos testes foi **24.22.1**, registrada em `mobile/.nvmrc`. Use um editor como VS Code. O projeto usa **Expo SDK 57** (`expo ~57.0.32`), **React 19.2.3** e **React Native 0.86.3**, a partir do template oficial blank. No Android, instale Expo Go e confira a compatibilidade com esse SDK em [expo.dev/go](https://expo.dev/go). O arquivo de dependências e o lockfile definem a combinação usada pelo projeto; não atualize pacotes aleatoriamente para corrigir incompatibilidades.
 
 Abra esta pasta no terminal. Os comandos abaixo usam dois terminais: um para a API e outro para o Expo.
 
@@ -46,7 +49,7 @@ python init_db.py
 python -m flask --app app run --host=0.0.0.0 --port=5000
 ```
 
-Se `py` não existir e `python --version` funcionar, substitua `py` por `python`. O inicializador cria `backend/alagamentos.db` e mantém os registros existentes.
+Se `py` não existir e `python --version` funcionar, substitua `py` por `python`. O inicializador cria `backend/alagamentos.db`, aplica as alterações de estrutura necessárias e mantém os registros existentes. Execute-o após atualizar o projeto, antes de iniciar a API.
 
 ### API no Linux/macOS
 
@@ -119,13 +122,22 @@ O celular precisa alcançar **dois serviços**: Python/Flask na porta `5000` e N
 
 ## Usar o protótipo
 
-1. Em **Ocorrências**, toque em **Nova ocorrência**.
-2. Preencha bairro, endereço, descrição e gravidade. Salve.
-3. A lista é consultada novamente após o cadastro.
-4. Abra um relato para ver todos os campos e tocar em **Marcar como resolvido**.
-5. No outro dispositivo, toque em **Atualizar** para consultar o estado salvo.
+1. Crie uma conta com nome, e-mail e senha ou entre com uma conta existente.
+2. Em **Ocorrências**, consulte a lista ou alterne para o mapa. Somente relatos com coordenadas aparecem no mapa; todos continuam na lista.
+3. Toque em **Nova ocorrência** e preencha bairro, endereço, descrição e gravidade.
+4. Opcionalmente, solicite a localização atual e autorize seu compartilhamento no relato. Você também pode selecionar **uma foto ou um vídeo**. Salve.
+5. Abra os detalhes. Se você for o autor de um relato ativo, poderá tocar em **Marcar como resolvido**. Outros participantes podem consultar, mas a API recusa a alteração feita por outra conta.
+6. No outro dispositivo autenticado, toque em **Atualizar** para consultar o estado salvo. Para encerrar a sessão, use **Sair** com acesso à API.
 
 O identificador, a data de cadastro e a situação inicial `ativo` são definidos pelo servidor. A data é armazenada em UTC. Falhas no envio devem manter os campos preenchidos para permitir uma nova tentativa.
+
+### Sessão, localização e arquivos
+
+A sessão dura até sete dias e é revogada ao sair. No Expo Go, o token é guardado com SecureStore; no navegador, fica somente em memória e recarregar a página exige entrar novamente. Senhas e tokens não devem ser colocados em `.env`, no código ou nos relatos. O servidor guarda hash da senha e hash do token, sem armazenar esses valores em texto puro.
+
+O GPS é opcional, solicitado somente por uma ação do usuário, em primeiro plano. Negar a permissão não impede o cadastro sem coordenadas; não há rastreamento contínuo. Coordenadas enviadas ficam visíveis aos participantes autenticados que consultam o relato. No celular, os mapas usam os recursos nativos do Expo Go. A versão web usa Leaflet e mapas do OpenStreetMap, com atribuição e acesso à Internet. O GPS no navegador exige contexto seguro (HTTPS ou localhost); abrir a versão web por HTTP no IP da rede pode bloquear a localização, mesmo que o GPS funcione no aplicativo nativo.
+
+O anexo é opcional: **um arquivo JPEG, PNG ou MP4 de até 20 MiB**, sem promessa de limite de duração para vídeo. Um arquivo de vídeo pequeno pode ter duração variável. A API valida o conteúdo; as imagens são reprocessadas para remover metadados EXIF. O aplicativo não converte automaticamente formatos incompatíveis. Os arquivos ficam em `backend/uploads/`, fora do Git, e só são entregues pela API após autenticação.
 
 ## Verificar o projeto
 
@@ -149,25 +161,28 @@ Opcionalmente, `npm run web` permite inspecionar as telas no navegador do mesmo 
 
 Consulte [o roteiro e o registro de validação](documentacao/TESTES.md) para o teste integrado opcional com Playwright e os testes de persistência, rede, indisponibilidade e demonstração com dois dispositivos. Testes automatizados locais não substituem o teste em celulares físicos.
 
-## Limitações da primeira versão
+## Limitações da versão atual
 
-- Não há login: qualquer participante com acesso à API pode alterar a situação de um relato. Esta é uma limitação acadêmica do protótipo.
+- Há login e autoria, mas não há verificação de e-mail, recuperação de senha ou moderação. Use contas e dados próprios de uma demonstração acadêmica.
 - Os relatos não recebem verificação de uma autoridade. Gravidade e situação refletem o que os participantes informam.
 - A atualização é manual ao consultar novamente. Não há sincronização em tempo real.
 - Existe uma API e um arquivo de banco no servidor. SQLite não está distribuído; o projeto não implementa replicação ou tolerância a falhas.
 - A operação depende do computador e da rede disponíveis. Não há modo offline nem fila de envio.
-- Login, mapas, fotos, GPS e notificações ficam fora desta versão.
+- Os mapas dependem dos provedores externos e da Internet. Um relato sem GPS permanece consultável pela lista.
+- Não há notificações, rastreamento contínuo ou sincronização em tempo real.
+- O servidor de desenvolvimento e HTTP na rede local destinam-se à demonstração. Uma publicação real exigiria HTTPS e preparação adequada do serviço, especialmente para credenciais e anexos.
 
 ## Documentação
 
 - [Checklist das próximas etapas e da entrega](documentacao/ENTREGA.md)
 - [Roteiro de apresentação de 5 a 8 minutos](documentacao/APRESENTACAO.md)
 - [Base do relatório para revisão e preenchimento pelo grupo](documentacao/RELATORIO_BASE.md)
-- [Vídeos e capturas da demonstração de apoio web](documentacao/evidencias/index.html)
+- [Evidências atuais: login, autoria, GPS simulado, mapa e anexos](documentacao/evidencias-v2/index.html)
+- [Vídeos e capturas históricos da primeira versão, sem login](documentacao/evidencias/index.html)
 - [Contrato da API](documentacao/API.md)
 - [Arquitetura, conceitos e diagramas preparatórios](documentacao/ARQUITETURA.md)
 - [Roteiro de testes e demonstração](documentacao/TESTES.md)
 - [Modelo de diário de atividades e fontes](documentacao/DIARIO.md)
 - [Instruções locais e situação da configuração da nuvem](documentacao/AMBIENTE_NUVEM.md)
 
-O banco fica fora do Git. Para preservar os dados de demonstração, pare a API e faça uma cópia separada de `backend/alagamentos.db`. Não apague esse arquivo ao reiniciar o servidor.
+O banco e os anexos ficam fora do Git. Para preservar a demonstração, **pare a API e copie juntos `backend/alagamentos.db` e `backend/uploads/`**. Restaurar somente o banco não restaura os arquivos anexados. Não apague esses arquivos ao reiniciar o servidor.

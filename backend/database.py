@@ -14,6 +14,7 @@ def conectar(database):
     """Cada operação recebe sua conexão e confirma ou desfaz a transação."""
     conexao = sqlite3.connect(str(database), timeout=10)
     conexao.row_factory = sqlite3.Row
+    conexao.execute("PRAGMA foreign_keys = ON")
     try:
         yield conexao
         conexao.commit()
@@ -31,3 +32,12 @@ def inicializar_banco(database):
     schema = (BASE_DIR / "schema.sql").read_text(encoding="utf-8")
     with conectar(caminho) as conexao:
         conexao.executescript(schema)
+        # Bancos da primeira versão recebem colunas sem apagar ou atribuir autoria.
+        colunas = {coluna["name"] for coluna in conexao.execute("PRAGMA table_info(ocorrencias)")}
+        for nome, definicao in (
+            ("autor_id", "INTEGER REFERENCES usuarios(id)"),
+            ("latitude", "REAL CHECK(latitude BETWEEN -90 AND 90)"),
+            ("longitude", "REAL CHECK(longitude BETWEEN -180 AND 180)"),
+        ):
+            if nome not in colunas:
+                conexao.execute(f"ALTER TABLE ocorrencias ADD COLUMN {nome} {definicao}")

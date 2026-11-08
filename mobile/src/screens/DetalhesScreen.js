@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { alterarSituacao, buscarOcorrencia } from '../services/api';
+import MapaOcorrencias from '../components/MapaOcorrencias';
+import AnexoViewer from '../components/AnexoViewer';
 import { AvisoRelatos, Botao, Cabecalho, Carregamento, Mensagem } from '../components/Interface';
 import { cores, estilos, rotuloGravidade, rotuloSituacao } from '../theme';
 
@@ -54,7 +56,7 @@ export default function DetalhesScreen({ id, onVoltar, onOcupadoChange }) {
   }, [id]);
 
   async function resolver() {
-    if (envioEmAndamento.current) return;
+    if (envioEmAndamento.current || ocorrencia?.pode_alterar !== true) return;
     envioEmAndamento.current = true;
     setAtualizando(true);
     onOcupadoChange(true);
@@ -95,14 +97,27 @@ export default function DetalhesScreen({ id, onVoltar, onOcupadoChange }) {
               <Campo titulo="Situação" valor={rotuloSituacao(ocorrencia.situacao)} />
               <Campo titulo="Data de cadastro (horário local)" valor={formatarData(ocorrencia.criado_em)} />
             </View>
+            {ocorrencia.latitude != null && ocorrencia.longitude != null && (
+              <View style={locais.campo}>
+                <Text style={estilos.rotulo}>Localização informada</Text>
+                <MapaOcorrencias ocorrencias={[ocorrencia]} onAbrirDetalhes={() => {}} compacto />
+              </View>
+            )}
+            {ocorrencia.anexos?.map((anexo) => <AnexoViewer key={anexo.id} anexo={anexo} />)}
             <Mensagem texto={mensagem} />
-            {ocorrencia.situacao === 'ativo' && (
+            {ocorrencia.pode_alterar === true && ocorrencia.situacao === 'ativo' && (
               <Botao
                 titulo={atualizando ? 'Atualizando…' : 'Marcar como resolvido'}
                 onPress={resolver} carregando={atualizando}
               />
             )}
-            <Text style={estilos.pequeno}>Limitação acadêmica: sem login, qualquer participante do protótipo pode alterar a situação do relato.</Text>
+            <Text style={estilos.pequeno}>
+              {ocorrencia.autor_id == null
+                ? 'Este relato foi criado antes do login e está disponível apenas para consulta.'
+                : ocorrencia.pode_alterar
+                  ? 'Você é o autor deste relato. Somente você pode alterar a situação.'
+                  : 'Somente o autor deste relato pode alterar a situação. Você pode consultar suas informações.'}
+            </Text>
           </>
         )}
         <Botao titulo="Voltar" onPress={onVoltar} secundario disabled={atualizando} />

@@ -4,8 +4,9 @@
     "allowJs": true,
     "checkJs": true,
     "noEmit": true,
-    "strict": false
+    "strict": false,
+    "moduleSuffixes": [".native", ""]
   },
-  "include": ["App.js", "index.js", "src/**/*.js"],
+  "include": ["App.js", "index.js", "src/**/*.js", "src/**/*.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
