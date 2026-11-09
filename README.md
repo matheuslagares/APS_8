@@ -189,3 +189,7 @@ Consulte [o roteiro e o registro de validação](documentacao/TESTES.md) para o 
 - [Instruções locais e situação da configuração da nuvem](documentacao/AMBIENTE_NUVEM.md)
 
 O banco e os anexos ficam fora do Git. Para preservar a demonstração, **pare a API e copie juntos `backend/alagamentos.db` e `backend/uploads/`**. Restaurar somente o banco não restaura os arquivos anexados. Não apague esses arquivos ao reiniciar o servidor.
+
+### Documentação com textos completos
+
+A [documentação integral](documentacao/rascunho_integral/README.md) inclui [Word](documentacao/rascunho_integral/RASCUNHO_INTEGRAL_APS_ABNT.docx), [PDF](documentacao/rascunho_integral/RASCUNHO_INTEGRAL_APS_ABNT.pdf), quatro diagramas UML, DER e relatório comentado de código. É um rascunho produzido com IA; observar a restrição de autoria do enunciado e as pendências reais descritas no documento.

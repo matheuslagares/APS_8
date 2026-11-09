@@ -13,10 +13,15 @@ import fitz
 
 RAIZ = Path(__file__).resolve().parents[1]
 PASTA = RAIZ / 'documentacao/modelo_aps'
-config = json.loads((PASTA / 'ORCAMENTO_PAGINAS.json').read_text())
+
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--atualizar-mapa', action='store_true', help='Lê os PDFs e prepara páginas reais para a próxima geração do sumário.')
+parser.add_argument('--pasta', type=Path, default=PASTA)
+parser.add_argument('--principal', default='MODELO_PREENCHIVEL_APS')
+parser.add_argument('--codigo', default='RELATORIO_TECNICO_CODIGO_SELECIONADO')
 args = parser.parse_args()
+PASTA=args.pasta
+config=json.loads((PASTA/'ORCAMENTO_PAGINAS.json').read_text())
 
 
 def normalizar(s):
@@ -39,8 +44,8 @@ def localizar(reader, paginas):
     return mapa
 
 
-principal_path = PASTA / 'MODELO_PREENCHIVEL_APS.pdf'
-codigo_path = PASTA / 'RELATORIO_TECNICO_CODIGO_SELECIONADO.pdf'
+principal_path = PASTA / (args.principal+'.pdf')
+codigo_path = PASTA / (args.codigo+'.pdf')
 reader = PdfReader(principal_path); codigo = PdfReader(codigo_path)
 mapa = localizar(reader, config['paginas'])
 if args.atualizar_mapa:
@@ -49,7 +54,7 @@ if args.atualizar_mapa:
     raise SystemExit(0)
 
 # Documento Word: geometria, estilos e seções efetivamente gravados no OOXML.
-doc = Document(PASTA / 'MODELO_PREENCHIVEL_APS.docx')
+doc = Document(PASTA / (args.principal+'.docx'))
 assert len(doc.sections) == 3
 for sec in doc.sections:
     for medido, cm in [(sec.page_width,21),(sec.page_height,29.7),(sec.top_margin,3),(sec.left_margin,3),(sec.right_margin,2),(sec.bottom_margin,2)]:

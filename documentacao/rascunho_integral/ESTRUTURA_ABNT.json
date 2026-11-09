@@ -1,0 +1,96 @@
+{
+  "intro": [
+    [
+      "Contexto e delimitação",
+      [
+        "Que contexto urbano justifica o tema? Apoiar afirmações e estatísticas em fontes realmente consultadas.",
+        "Quem são os participantes e quais situações o protótipo cobre?",
+        "Delimitar informações relatadas, localização opcional, mídia e ausência de verificação oficial."
+      ]
+    ],
+    [
+      "Visão do trabalho e organização",
+      [
+        "Apresentar as partes do sistema sem antecipar toda a fundamentação.",
+        "Explicar o fluxo móvel escolhido com Expo Go e a dependência do computador servidor.",
+        "Orientar o leitor sobre os próximos capítulos e declarar quais validações ainda estão pendentes."
+      ]
+    ]
+  ],
+  "fundamentos": [
+    [
+      "Sistemas distribuídos e middleware",
+      [
+        "Definir sistema distribuído, processos, heterogeneidade e modelo cliente-servidor com bibliografia.",
+        "Explicar a função de middleware e relacioná-la à intermediação entre aplicativo, serviço e armazenamento.",
+        "Distinguir comunicação entre processos de banco distribuído, replicação e tolerância a falhas."
+      ]
+    ],
+    [
+      "Comunicação e representação",
+      [
+        "Explicar requisição/resposta, métodos, recursos e códigos HTTP.",
+        "Comparar JSON e multipart, indicando seu uso em relatos e anexos.",
+        "Discutir serialização, tempo limite e significado de erro de rede versus erro HTTP."
+      ]
+    ],
+    [
+      "Mobilidade, localização e mapas",
+      [
+        "Explicar características e restrições de dispositivos móveis e de uma rede variável.",
+        "Definir posicionamento/GNSS, permissões e coleta em primeiro plano, sem chamar o GPS simulado de teste real.",
+        "Descrever coordenadas, mapas e mosaicos, provedores externos, atribuição e compartilhamento opcional."
+      ]
+    ],
+    [
+      "Segurança, persistência e falhas",
+      [
+        "Diferenciar autenticação, autorização, hash de senha, sessão e transporte HTTPS.",
+        "Explicar persistência, transações, concorrência e a diferença entre banco e arquivos anexados.",
+        "Analisar falha parcial, atualização manual e o risco de repetir cadastro quando a confirmação se perde."
+      ]
+    ]
+  ],
+  "planos": [
+    [
+      "Escopo e requisitos",
+      [
+        "Identificar requisitos funcionais, restrições e critérios de aceitação.",
+        "Distinguir versão inicial e ampliação com login, GPS, mapa e anexos.",
+        "Descrever prioridades sem acrescentar funções não implementadas."
+      ]
+    ],
+    [
+      "Elementos, ferramentas e ambiente",
+      [
+        "Justificar Python/JavaScript, Flask/React Native/Expo como ferramentas de implementação.",
+        "Registrar versões e recursos reais usados pelo grupo.",
+        "Explicar duas aplicações servidoras no desenvolvimento, dependências e configurações locais."
+      ]
+    ],
+    [
+      "Etapas e integração",
+      [
+        "Separar planejamento inicial de execução efetivamente observada.",
+        "Relacionar etapas de banco, API, sessão, interface e integração.",
+        "Preencher responsáveis e datas reais; não converter o plano de 21 dias em diário realizado."
+      ]
+    ],
+    [
+      "Verificação e evidências",
+      [
+        "Definir como requisitos serão testados e associar cada um a evidências.",
+        "Explicar o alcance de 56 testes da API e 15 cenários web documentados, sem atribuir execução a alunos sem confirmação.",
+        "Planejar teste com dois celulares, GPS real, mídia, autorização e recuperação de falhas."
+      ]
+    ],
+    [
+      "Riscos, backup e demonstração",
+      [
+        "Identificar dependência de rede/servidor/provedores e medidas de diagnóstico.",
+        "Descrever backup consistente do SQLite e uploads com API parada.",
+        "Planejar ensaio e divisão real de apresentação, incluindo todos os integrantes."
+      ]
+    ]
+  ]
+}

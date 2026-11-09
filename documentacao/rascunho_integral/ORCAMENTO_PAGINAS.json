@@ -1,0 +1,436 @@
+{
+  "natureza": "Modelo de formatação ABNT; não atesta texto final ou aceitação acadêmica.",
+  "base_commit": "028b7041702f68e1a473d57acbe95037a8341a79",
+  "paginas": [
+    {
+      "id": "CAPA",
+      "grupo": "capa",
+      "titulo": "RASCUNHO INTEGRAL PRODUZIDO COM IA"
+    },
+    {
+      "id": "ROSTO",
+      "grupo": "pretextual",
+      "titulo": "IDENTIFICAÇÃO NÃO PREENCHIDA"
+    },
+    {
+      "id": "APROVACAO",
+      "grupo": "pretextual",
+      "titulo": "FOLHA DE APROVAÇÃO – MODELO"
+    },
+    {
+      "id": "RESUMO",
+      "grupo": "pretextual",
+      "titulo": "RESUMO"
+    },
+    {
+      "id": "ABSTRACT",
+      "grupo": "pretextual",
+      "titulo": "ABSTRACT"
+    },
+    {
+      "id": "LISTA_FIGURAS",
+      "grupo": "pretextual",
+      "titulo": "LISTA DE FIGURAS"
+    },
+    {
+      "id": "SUMARIO",
+      "grupo": "pretextual",
+      "titulo": "SUMÁRIO"
+    },
+    {
+      "id": "OBJETIVO_01",
+      "grupo": "objetivo",
+      "titulo": "1 OBJETIVO E MOTIVAÇÃO"
+    },
+    {
+      "id": "INTRODUCAO_01",
+      "grupo": "introducao",
+      "titulo": "2 INTRODUÇÃO"
+    },
+    {
+      "id": "INTRODUCAO_02",
+      "grupo": "introducao",
+      "titulo": "2.2 Visão do trabalho e organização"
+    },
+    {
+      "id": "FUNDAMENTOS_01",
+      "grupo": "fundamentos",
+      "titulo": "3 FUNDAMENTOS"
+    },
+    {
+      "id": "FUNDAMENTOS_02",
+      "grupo": "fundamentos",
+      "titulo": "3.2 Comunicação e representação"
+    },
+    {
+      "id": "FUNDAMENTOS_03",
+      "grupo": "fundamentos",
+      "titulo": "3.3 Mobilidade, localização e mapas"
+    },
+    {
+      "id": "FUNDAMENTOS_04",
+      "grupo": "fundamentos",
+      "titulo": "3.4 Segurança, persistência e falhas"
+    },
+    {
+      "id": "PLANO_01",
+      "grupo": "plano",
+      "titulo": "4 PLANO DE DESENVOLVIMENTO"
+    },
+    {
+      "id": "PLANO_02",
+      "grupo": "plano",
+      "titulo": "4.2 Elementos, ferramentas e ambiente"
+    },
+    {
+      "id": "PLANO_03",
+      "grupo": "plano",
+      "titulo": "4.3 Etapas e integração"
+    },
+    {
+      "id": "PLANO_04",
+      "grupo": "plano",
+      "titulo": "4.4 Verificação e evidências"
+    },
+    {
+      "id": "PLANO_05",
+      "grupo": "plano",
+      "titulo": "4.5 Riscos, backup e demonstração"
+    },
+    {
+      "id": "PROJETO_01",
+      "grupo": "projeto",
+      "titulo": "5 PROJETO DO PROGRAMA"
+    },
+    {
+      "id": "PROJETO_02",
+      "grupo": "projeto",
+      "titulo": "5.2 Diagrama de casos de uso"
+    },
+    {
+      "id": "PROJETO_03",
+      "grupo": "projeto",
+      "titulo": "5.3 Diagrama de classes conceituais"
+    },
+    {
+      "id": "PROJETO_04",
+      "grupo": "projeto",
+      "titulo": "5.4 Diagrama de sequência"
+    },
+    {
+      "id": "PROJETO_05",
+      "grupo": "projeto",
+      "titulo": "5.5 Diagrama de atividades"
+    },
+    {
+      "id": "PROJETO_06",
+      "grupo": "projeto",
+      "titulo": "5.6 Diagrama entidade-relacionamento físico"
+    },
+    {
+      "id": "CODIGO_01",
+      "grupo": "codigo",
+      "titulo": "6 RELATÓRIO DE CÓDIGO"
+    },
+    {
+      "id": "CODIGO_02",
+      "grupo": "codigo",
+      "titulo": "6.1 Trechos selecionados – parte 1"
+    },
+    {
+      "id": "CODIGO_03",
+      "grupo": "codigo",
+      "titulo": "6.2 Trechos selecionados – parte 2"
+    },
+    {
+      "id": "CODIGO_04",
+      "grupo": "codigo",
+      "titulo": "6.3 Trechos selecionados – parte 3"
+    },
+    {
+      "id": "CODIGO_05",
+      "grupo": "codigo",
+      "titulo": "6.4 Trechos selecionados – parte 4"
+    },
+    {
+      "id": "CODIGO_06",
+      "grupo": "codigo",
+      "titulo": "6.5 Trechos selecionados – parte 5"
+    },
+    {
+      "id": "CODIGO_07",
+      "grupo": "codigo",
+      "titulo": "6.6 Trechos selecionados – parte 6"
+    },
+    {
+      "id": "ORAL_01",
+      "grupo": "oral",
+      "titulo": "7 CONSIDERAÇÕES FINAIS"
+    },
+    {
+      "id": "REFERENCIAS_01",
+      "grupo": "referencias",
+      "titulo": "REFERÊNCIAS"
+    },
+    {
+      "id": "FICHAS_01",
+      "grupo": "fichas",
+      "titulo": "APÊNDICE A – ORIENTAÇÕES PARA FICHAS DE APS"
+    }
+  ],
+  "sumario": [
+    {
+      "id": "OBJETIVO_01",
+      "texto": "1 OBJETIVO E MOTIVAÇÃO",
+      "nivel": 1
+    },
+    {
+      "id": "INTRODUCAO_01",
+      "texto": "2 INTRODUÇÃO",
+      "nivel": 1
+    },
+    {
+      "id": "INTRODUCAO_01",
+      "texto": "2.1 Contexto e delimitação",
+      "nivel": 2
+    },
+    {
+      "id": "INTRODUCAO_02",
+      "texto": "2.2 Visão do trabalho e organização",
+      "nivel": 2
+    },
+    {
+      "id": "FUNDAMENTOS_01",
+      "texto": "3 FUNDAMENTOS",
+      "nivel": 1
+    },
+    {
+      "id": "FUNDAMENTOS_01",
+      "texto": "3.1 Sistemas distribuídos e middleware",
+      "nivel": 2
+    },
+    {
+      "id": "FUNDAMENTOS_02",
+      "texto": "3.2 Comunicação e representação",
+      "nivel": 2
+    },
+    {
+      "id": "FUNDAMENTOS_03",
+      "texto": "3.3 Mobilidade, localização e mapas",
+      "nivel": 2
+    },
+    {
+      "id": "FUNDAMENTOS_04",
+      "texto": "3.4 Segurança, persistência e falhas",
+      "nivel": 2
+    },
+    {
+      "id": "PLANO_01",
+      "texto": "4 PLANO DE DESENVOLVIMENTO",
+      "nivel": 1
+    },
+    {
+      "id": "PLANO_01",
+      "texto": "4.1 Escopo e requisitos",
+      "nivel": 2
+    },
+    {
+      "id": "PLANO_02",
+      "texto": "4.2 Elementos, ferramentas e ambiente",
+      "nivel": 2
+    },
+    {
+      "id": "PLANO_03",
+      "texto": "4.3 Etapas e integração",
+      "nivel": 2
+    },
+    {
+      "id": "PLANO_04",
+      "texto": "4.4 Verificação e evidências",
+      "nivel": 2
+    },
+    {
+      "id": "PLANO_05",
+      "texto": "4.5 Riscos, backup e demonstração",
+      "nivel": 2
+    },
+    {
+      "id": "PROJETO_01",
+      "texto": "5 PROJETO DO PROGRAMA",
+      "nivel": 1
+    },
+    {
+      "id": "PROJETO_01",
+      "texto": "5.1 Requisitos e módulos",
+      "nivel": 2
+    },
+    {
+      "id": "PROJETO_02",
+      "texto": "5.2 Diagrama de casos de uso",
+      "nivel": 2
+    },
+    {
+      "id": "PROJETO_03",
+      "texto": "5.3 Diagrama de classes conceituais",
+      "nivel": 2
+    },
+    {
+      "id": "PROJETO_04",
+      "texto": "5.4 Diagrama de sequência",
+      "nivel": 2
+    },
+    {
+      "id": "PROJETO_05",
+      "texto": "5.5 Diagrama de atividades",
+      "nivel": 2
+    },
+    {
+      "id": "PROJETO_06",
+      "texto": "5.6 Diagrama entidade-relacionamento físico",
+      "nivel": 2
+    },
+    {
+      "id": "CODIGO_01",
+      "texto": "6 RELATÓRIO DE CÓDIGO",
+      "nivel": 1
+    },
+    {
+      "id": "CODIGO_02",
+      "texto": "6.1 Trechos selecionados – parte 1",
+      "nivel": 2
+    },
+    {
+      "id": "CODIGO_03",
+      "texto": "6.2 Trechos selecionados – parte 2",
+      "nivel": 2
+    },
+    {
+      "id": "CODIGO_04",
+      "texto": "6.3 Trechos selecionados – parte 3",
+      "nivel": 2
+    },
+    {
+      "id": "CODIGO_05",
+      "texto": "6.4 Trechos selecionados – parte 4",
+      "nivel": 2
+    },
+    {
+      "id": "CODIGO_06",
+      "texto": "6.5 Trechos selecionados – parte 5",
+      "nivel": 2
+    },
+    {
+      "id": "CODIGO_07",
+      "texto": "6.6 Trechos selecionados – parte 6",
+      "nivel": 2
+    },
+    {
+      "id": "ORAL_01",
+      "texto": "7 CONSIDERAÇÕES FINAIS",
+      "nivel": 1
+    },
+    {
+      "id": "ORAL_01",
+      "texto": "7.1 Apresentação do programa",
+      "nivel": 2
+    },
+    {
+      "id": "REFERENCIAS_01",
+      "texto": "REFERÊNCIAS",
+      "nivel": 1
+    },
+    {
+      "id": "FICHAS_01",
+      "texto": "APÊNDICE A – ORIENTAÇÕES PARA FICHAS DE APS",
+      "nivel": 1
+    }
+  ],
+  "figuras": [
+    {
+      "id": "PROJETO_02",
+      "texto": "Figura 1 – Diagrama de casos de uso"
+    },
+    {
+      "id": "PROJETO_03",
+      "texto": "Figura 2 – Diagrama de classes conceituais"
+    },
+    {
+      "id": "PROJETO_04",
+      "texto": "Figura 3 – Diagrama de sequência"
+    },
+    {
+      "id": "PROJETO_05",
+      "texto": "Figura 4 – Diagrama de atividades"
+    },
+    {
+      "id": "PROJETO_06",
+      "texto": "Figura 5 – Diagrama entidade-relacionamento físico"
+    }
+  ],
+  "paginas_codigo": [
+    {
+      "id": "CODIGO_01",
+      "grupo": "codigo",
+      "titulo": "RELATÓRIO DE CÓDIGO SELECIONADO"
+    },
+    {
+      "id": "CODIGO_02",
+      "grupo": "codigo",
+      "titulo": "1.1 Trechos selecionados – parte 1"
+    },
+    {
+      "id": "CODIGO_03",
+      "grupo": "codigo",
+      "titulo": "1.2 Trechos selecionados – parte 2"
+    },
+    {
+      "id": "CODIGO_04",
+      "grupo": "codigo",
+      "titulo": "1.3 Trechos selecionados – parte 3"
+    },
+    {
+      "id": "CODIGO_05",
+      "grupo": "codigo",
+      "titulo": "1.4 Trechos selecionados – parte 4"
+    },
+    {
+      "id": "CODIGO_06",
+      "grupo": "codigo",
+      "titulo": "1.5 Trechos selecionados – parte 5"
+    },
+    {
+      "id": "CODIGO_07",
+      "grupo": "codigo",
+      "titulo": "1.6 Trechos selecionados – parte 6"
+    }
+  ],
+  "limites": {
+    "objetivo": [
+      1,
+      2
+    ],
+    "introducao": [
+      2,
+      4
+    ],
+    "fundamentos": [
+      4,
+      8
+    ],
+    "plano": [
+      5,
+      15
+    ],
+    "projeto": [
+      3,
+      8
+    ],
+    "codigo": [
+      null,
+      10
+    ]
+  },
+  "elementos_pretextuais_contados": 6,
+  "observacao_pretextuais": "A quantidade de páginas é apurada no PDF; o sumário pode ocupar mais de uma página.",
+  "formato": "A4 frente; Arial 12; 1,5; margens 3/2 cm; primeira linha 1,25 cm escolhida."
+}

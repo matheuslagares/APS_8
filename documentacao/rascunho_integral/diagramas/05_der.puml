@@ -1,0 +1,91 @@
+@startuml
+title REFERÊNCIA TÉCNICA — VALIDAR PELO GRUPO\nDER físico — SQLite de backend/schema.sql
+footer Esboço assistido por IA; revisar com o código antes de usar.
+top to bottom direction
+hide circle
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam linetype ortho
+skinparam padding 5
+skinparam nodesep 22
+skinparam ranksep 24
+skinparam entityBackgroundColor #F4F8FC
+skinparam entityBorderColor #39576B
+skinparam noteBackgroundColor #FFF8E7
+skinparam noteBorderColor #A38B50
+scale max 780 width
+
+entity "usuarios" as usuarios {
+  * id : INTEGER <<PK, AUTOINCREMENT>>
+  --
+  * nome : TEXT
+  * email : TEXT <<UNIQUE, NOCASE>>
+  * senha_hash : TEXT
+}
+
+entity "sessoes" as sessoes {
+  * id : INTEGER <<PK, AUTOINCREMENT>>
+  --
+  * usuario_id : INTEGER <<FK>>
+  * token_hash : TEXT <<UNIQUE>>
+  * expira_em : TEXT
+}
+
+entity "ocorrencias" as ocorrencias {
+  * id : INTEGER <<PK, AUTOINCREMENT>>
+  --
+  * bairro : TEXT
+  * endereco : TEXT
+  * descricao : TEXT
+  * gravidade : TEXT
+  * situacao : TEXT = 'ativo'
+  * criado_em : TEXT
+  autor_id : INTEGER <<FK, NULL>>
+  latitude : REAL <<NULL>>
+  longitude : REAL <<NULL>>
+}
+
+entity "anexos" as anexos {
+  * id : INTEGER <<PK, AUTOINCREMENT>>
+  --
+  * ocorrencia_id : INTEGER <<FK>>
+  * nome_arquivo : TEXT <<UNIQUE>>
+  * tipo : TEXT
+  * mime_type : TEXT
+  * tamanho : INTEGER
+}
+
+usuarios ||--o{ sessoes : usuario_id\nON DELETE CASCADE
+usuarios |o--o{ ocorrencias : autor_id\nlegado admite NULL
+ocorrencias ||--o{ anexos : ocorrencia_id\nON DELETE CASCADE
+
+note bottom of ocorrencias
+  CHECKs no schema de banco novo:
+  length(bairro) entre 1 e 100
+  length(endereco) entre 1 e 200
+  length(descricao) entre 1 e 1000
+  gravidade IN ('baixa', 'media', 'alta')
+  situacao IN ('ativo', 'resolvido')
+  latitude entre -90 e 90; longitude entre -180 e 180
+  coordenadas ambas NULL ou ambas não NULL.
+end note
+
+note bottom of anexos
+  CHECK tipo IN ('imagem', 'video'); tamanho > 0.
+  Índice não único: anexos_ocorrencia(ocorrencia_id).
+  O SQLite permite 0..N anexos por ocorrência.
+  A API limita a um arquivo por cadastro.
+end note
+
+legend bottom
+  * = NOT NULL, ou chave INTEGER PRIMARY KEY gerada automaticamente.
+  FK: sessoes.usuario_id → usuarios.id;
+  ocorrencias.autor_id → usuarios.id; anexos.ocorrencia_id → ocorrencias.id.
+  PKs INTEGER PRIMARY KEY; demais unicidades estão marcadas UNIQUE.
+  email usa COLLATE NOCASE. PRAGMA foreign_keys = ON por conexão.
+  Migração antiga adiciona autor e coordenadas nulos; não atribui autoria.
+  O CHECK de coordenadas em par não é acrescentado ao banco legado;
+  a API valida o par tanto no banco novo quanto no migrado.
+endlegend
+@enduml

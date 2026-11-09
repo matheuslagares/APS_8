@@ -1,0 +1,65 @@
+@startuml classes_conceituais
+ title REFERÊNCIA TÉCNICA — VALIDAR PELO GRUPO\n02. Modelo conceitual e módulos funcionais
+ top to bottom direction
+ skinparam defaultFontName SansSerif
+ skinparam defaultFontSize 13
+ skinparam shadowing false
+ skinparam backgroundColor white
+ skinparam ArrowColor #40566C
+ skinparam classBackgroundColor #F1F6FA
+ skinparam classBorderColor #40566C
+ skinparam classAttributeIconSize 0
+ skinparam nodesep 25
+ skinparam ranksep 30
+ hide empty methods
+ scale max 700*740
+
+ class Usuario <<conceitual>> {
+   id : inteiro
+   nome : texto
+   email : texto único
+ }
+ class Sessao <<conceitual>> {
+   id : inteiro
+   token_hash : texto único
+   expira_em : texto ISO 8601
+ }
+ class Ocorrencia <<conceitual>> {
+   id : inteiro
+   gravidade : texto
+   situacao : texto
+   autor_id : inteiro opcional
+ }
+ class Anexo <<conceitual>> {
+   id : inteiro
+   tipo : texto
+   tamanho : inteiro
+ }
+ class "API Flask · app.py" as API <<módulo>> {
+   create_app(test_config)
+   criar_ocorrencia()
+   atualizar_situacao(id)
+ }
+ class "database.py" as Banco <<módulo>> {
+   conectar(database)
+ }
+
+ Usuario "1" -right- "0..*" Sessao
+ Usuario "0..1" -down- "0..*" Ocorrencia : autoria
+ Ocorrencia "1" -right- "0..*" Anexo
+ API .up.> Ocorrencia
+ API .up.> Sessao
+ API .right.> Banco : usa
+
+ note bottom of Anexo
+   SQLite: 0..N anexos por ocorrência.
+   API: no máximo 1 por cadastro.
+ end note
+ note bottom of API
+   Entidades conceituais, não classes Python.
+   Atributos resumidos; ver todos no DER.
+   Implementação funcional com SQL e dicionários.
+ end note
+
+ footer Esboço assistido por IA; revisar com o código antes de usar.\nFontes: backend/schema.sql; app.py; database.py.
+@enduml

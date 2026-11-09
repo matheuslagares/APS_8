@@ -1,0 +1,2718 @@
+{
+  "natureza": "Inventário técnico factual extraído do código; não é redação acadêmica nem relatório final.",
+  "repositorio": "matheuslagares/APS_8",
+  "base_commit": "028b7041702f68e1a473d57acbe95037a8341a79",
+  "origem_dos_dados": "git show do commit indicado; não usa alterações de trabalho nem banco real",
+  "gerado_em_utc": "2026-11-08T23:09:01+00:00",
+  "metrica_loc": {
+    "definicao": "LOC = linhas físicas de texto, incluindo comentários e linhas vazias. Também se informam linhas não vazias. Não é contagem de instruções executáveis.",
+    "nao_inclui_em_producao": [
+      "testes",
+      "infraestrutura",
+      "configuração",
+      "lockfiles",
+      "documentação",
+      "evidências geradas",
+      "fixtures e recursos binários"
+    ],
+    "origem": "Conteúdos UTF-8 versionados no commit; linhas contadas com str.splitlines().",
+    "configuracao_loc_nao_equivale_codigo_aplicacao": true
+  },
+  "rotas": [
+    {
+      "metodo": "GET",
+      "caminho": "/saude",
+      "endpoint_flask": "saude",
+      "bearer_obrigatorio": false,
+      "arquivo": "backend/app.py",
+      "linha_decorador": 118,
+      "linha_funcao": 119,
+      "metodos_automaticos": [
+        "HEAD",
+        "OPTIONS"
+      ]
+    },
+    {
+      "metodo": "POST",
+      "caminho": "/auth/cadastro",
+      "endpoint_flask": "cadastrar_usuario",
+      "bearer_obrigatorio": false,
+      "arquivo": "backend/app.py",
+      "linha_decorador": 122,
+      "linha_funcao": 123,
+      "metodos_automaticos": [
+        "OPTIONS"
+      ]
+    },
+    {
+      "metodo": "POST",
+      "caminho": "/auth/login",
+      "endpoint_flask": "entrar",
+      "bearer_obrigatorio": false,
+      "arquivo": "backend/app.py",
+      "linha_decorador": 150,
+      "linha_funcao": 151,
+      "metodos_automaticos": [
+        "OPTIONS"
+      ]
+    },
+    {
+      "metodo": "GET",
+      "caminho": "/auth/me",
+      "endpoint_flask": "minha_conta",
+      "bearer_obrigatorio": true,
+      "arquivo": "backend/app.py",
+      "linha_decorador": 167,
+      "linha_funcao": 168,
+      "metodos_automaticos": [
+        "HEAD",
+        "OPTIONS"
+      ]
+    },
+    {
+      "metodo": "POST",
+      "caminho": "/auth/logout",
+      "endpoint_flask": "sair",
+      "bearer_obrigatorio": true,
+      "arquivo": "backend/app.py",
+      "linha_decorador": 171,
+      "linha_funcao": 172,
+      "metodos_automaticos": [
+        "OPTIONS"
+      ]
+    },
+    {
+      "metodo": "GET",
+      "caminho": "/ocorrencias",
+      "endpoint_flask": "listar_ocorrencias",
+      "bearer_obrigatorio": true,
+      "arquivo": "backend/app.py",
+      "linha_decorador": 191,
+      "linha_funcao": 192,
+      "metodos_automaticos": [
+        "HEAD",
+        "OPTIONS"
+      ]
+    },
+    {
+      "metodo": "POST",
+      "caminho": "/ocorrencias",
+      "endpoint_flask": "criar_ocorrencia",
+      "bearer_obrigatorio": true,
+      "arquivo": "backend/app.py",
+      "linha_decorador": 233,
+      "linha_funcao": 234,
+      "metodos_automaticos": [
+        "OPTIONS"
+      ]
+    },
+    {
+      "metodo": "GET",
+      "caminho": "/ocorrencias/<int:id>",
+      "endpoint_flask": "obter_ocorrencia",
+      "bearer_obrigatorio": true,
+      "arquivo": "backend/app.py",
+      "linha_decorador": 275,
+      "linha_funcao": 276,
+      "metodos_automaticos": [
+        "HEAD",
+        "OPTIONS"
+      ]
+    },
+    {
+      "metodo": "PATCH",
+      "caminho": "/ocorrencias/<int:id>/situacao",
+      "endpoint_flask": "atualizar_situacao",
+      "bearer_obrigatorio": true,
+      "arquivo": "backend/app.py",
+      "linha_decorador": 284,
+      "linha_funcao": 285,
+      "metodos_automaticos": [
+        "OPTIONS"
+      ]
+    },
+    {
+      "metodo": "GET",
+      "caminho": "/anexos/<int:id>",
+      "endpoint_flask": "obter_anexo",
+      "bearer_obrigatorio": true,
+      "arquivo": "backend/app.py",
+      "linha_decorador": 303,
+      "linha_funcao": 304,
+      "metodos_automaticos": [
+        "HEAD",
+        "OPTIONS"
+      ]
+    }
+  ],
+  "rotas_implicitas_flask": [
+    {
+      "caminho": "/static/<path:filename>",
+      "endpoint": "static",
+      "metodos": [
+        "GET",
+        "HEAD",
+        "OPTIONS"
+      ],
+      "observacao": "Habilitada pelo Flask(__name__) sem static_folder=None; nenhum arquivo estático versionado em backend/static."
+    }
+  ],
+  "sqlite": {
+    "origem": "schema.sql aplicado em SQLite :memory:, sem abrir o banco da aplicação",
+    "foreign_keys_por_conexao": {
+      "ativo": true,
+      "fonte": "backend/database.py:17"
+    },
+    "tabelas": [
+      {
+        "nome": "usuarios",
+        "sql": "CREATE TABLE usuarios (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    nome TEXT NOT NULL,\n    email TEXT NOT NULL UNIQUE COLLATE NOCASE,\n    senha_hash TEXT NOT NULL\n)",
+        "colunas": [
+          {
+            "nome": "id",
+            "tipo": "INTEGER",
+            "pk_posicao": 1,
+            "not_null_declarado": false,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "nome",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "email",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "senha_hash",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          }
+        ],
+        "chaves_estrangeiras": [],
+        "indices": [
+          {
+            "nome": "sqlite_autoindex_usuarios_1",
+            "unico": true,
+            "origem": "u",
+            "parcial": false,
+            "colunas": [
+              "email"
+            ],
+            "sql": null
+          }
+        ],
+        "checks": []
+      },
+      {
+        "nome": "sessoes",
+        "sql": "CREATE TABLE sessoes (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,\n    token_hash TEXT NOT NULL UNIQUE,\n    expira_em TEXT NOT NULL\n)",
+        "colunas": [
+          {
+            "nome": "id",
+            "tipo": "INTEGER",
+            "pk_posicao": 1,
+            "not_null_declarado": false,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "usuario_id",
+            "tipo": "INTEGER",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "token_hash",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "expira_em",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          }
+        ],
+        "chaves_estrangeiras": [
+          {
+            "id": 0,
+            "seq": 0,
+            "table": "usuarios",
+            "from": "usuario_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "CASCADE",
+            "match": "NONE"
+          }
+        ],
+        "indices": [
+          {
+            "nome": "sqlite_autoindex_sessoes_1",
+            "unico": true,
+            "origem": "u",
+            "parcial": false,
+            "colunas": [
+              "token_hash"
+            ],
+            "sql": null
+          }
+        ],
+        "checks": []
+      },
+      {
+        "nome": "ocorrencias",
+        "sql": "CREATE TABLE ocorrencias (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    bairro TEXT NOT NULL CHECK (length(bairro) BETWEEN 1 AND 100),\n    endereco TEXT NOT NULL CHECK (length(endereco) BETWEEN 1 AND 200),\n    descricao TEXT NOT NULL CHECK (length(descricao) BETWEEN 1 AND 1000),\n    gravidade TEXT NOT NULL CHECK (gravidade IN ('baixa', 'media', 'alta')),\n    situacao TEXT NOT NULL DEFAULT 'ativo' CHECK (situacao IN ('ativo', 'resolvido')),\n    criado_em TEXT NOT NULL,\n    autor_id INTEGER REFERENCES usuarios(id),\n    latitude REAL CHECK(latitude BETWEEN -90 AND 90),\n    longitude REAL CHECK(longitude BETWEEN -180 AND 180),\n    CHECK ((latitude IS NULL AND longitude IS NULL) OR (latitude IS NOT NULL AND longitude IS NOT NULL))\n)",
+        "colunas": [
+          {
+            "nome": "id",
+            "tipo": "INTEGER",
+            "pk_posicao": 1,
+            "not_null_declarado": false,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "bairro",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "endereco",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "descricao",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "gravidade",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "situacao",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": "'ativo'"
+          },
+          {
+            "nome": "criado_em",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "autor_id",
+            "tipo": "INTEGER",
+            "pk_posicao": 0,
+            "not_null_declarado": false,
+            "permite_nulo": true,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "latitude",
+            "tipo": "REAL",
+            "pk_posicao": 0,
+            "not_null_declarado": false,
+            "permite_nulo": true,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "longitude",
+            "tipo": "REAL",
+            "pk_posicao": 0,
+            "not_null_declarado": false,
+            "permite_nulo": true,
+            "valor_padrao_sql": null
+          }
+        ],
+        "chaves_estrangeiras": [
+          {
+            "id": 0,
+            "seq": 0,
+            "table": "usuarios",
+            "from": "autor_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "NO ACTION",
+            "match": "NONE"
+          }
+        ],
+        "indices": [],
+        "checks": [
+          "length(bairro) BETWEEN 1 AND 100",
+          "length(endereco) BETWEEN 1 AND 200",
+          "length(descricao) BETWEEN 1 AND 1000",
+          "gravidade IN ('baixa', 'media', 'alta')",
+          "situacao IN ('ativo', 'resolvido')",
+          "latitude BETWEEN -90 AND 90",
+          "longitude BETWEEN -180 AND 180",
+          "(latitude IS NULL AND longitude IS NULL) OR (latitude IS NOT NULL AND longitude IS NOT NULL)"
+        ]
+      },
+      {
+        "nome": "anexos",
+        "sql": "CREATE TABLE anexos (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    ocorrencia_id INTEGER NOT NULL REFERENCES ocorrencias(id) ON DELETE CASCADE,\n    nome_arquivo TEXT NOT NULL UNIQUE,\n    tipo TEXT NOT NULL CHECK(tipo IN ('imagem', 'video')),\n    mime_type TEXT NOT NULL,\n    tamanho INTEGER NOT NULL CHECK(tamanho > 0)\n)",
+        "colunas": [
+          {
+            "nome": "id",
+            "tipo": "INTEGER",
+            "pk_posicao": 1,
+            "not_null_declarado": false,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "ocorrencia_id",
+            "tipo": "INTEGER",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "nome_arquivo",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "tipo",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "mime_type",
+            "tipo": "TEXT",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          },
+          {
+            "nome": "tamanho",
+            "tipo": "INTEGER",
+            "pk_posicao": 0,
+            "not_null_declarado": true,
+            "permite_nulo": false,
+            "valor_padrao_sql": null
+          }
+        ],
+        "chaves_estrangeiras": [
+          {
+            "id": 0,
+            "seq": 0,
+            "table": "ocorrencias",
+            "from": "ocorrencia_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "CASCADE",
+            "match": "NONE"
+          }
+        ],
+        "indices": [
+          {
+            "nome": "anexos_ocorrencia",
+            "unico": false,
+            "origem": "c",
+            "parcial": false,
+            "colunas": [
+              "ocorrencia_id"
+            ],
+            "sql": "CREATE INDEX anexos_ocorrencia ON anexos(ocorrencia_id)"
+          },
+          {
+            "nome": "sqlite_autoindex_anexos_1",
+            "unico": true,
+            "origem": "u",
+            "parcial": false,
+            "colunas": [
+              "nome_arquivo"
+            ],
+            "sql": null
+          }
+        ],
+        "checks": [
+          "tipo IN ('imagem', 'video')",
+          "tamanho > 0"
+        ]
+      }
+    ],
+    "tabelas_internas_omitidas": [
+      "sqlite_sequence"
+    ],
+    "migracao_legado": {
+      "fonte": "backend/database.py:28",
+      "colunas_adicionadas_se_ausentes": [
+        "autor_id INTEGER REFERENCES usuarios(id)",
+        "latitude REAL CHECK(latitude BETWEEN -90 AND 90)",
+        "longitude REAL CHECK(longitude BETWEEN -180 AND 180)"
+      ],
+      "preserva_registros": true,
+      "autor_legado": null,
+      "diferenca_schema_novo_migrado": "O CHECK de coordenadas em par consta no schema novo, mas não é acrescentado por ALTER TABLE ao banco legado. A API valida o par em ambos."
+    }
+  },
+  "divergencias_diagrama_schema": [
+    {
+      "diagrama": "documentacao/ARQUITETURA.md:150",
+      "declaracao": "ocorrencias ||--o| anexos",
+      "sqlite": "anexos.ocorrencia_id é NOT NULL/FK sem UNIQUE; anexos_ocorrencia é índice não único.",
+      "cardinalidade_sqlite": "Uma ocorrência tem zero ou muitos anexos; cada anexo tem exatamente uma ocorrência.",
+      "regra_api": "POST /ocorrencias aceita no máximo um arquivo e insere no máximo um anexo por cadastro.",
+      "fontes": [
+        "backend/schema.sql:32",
+        "backend/schema.sql:39",
+        "backend/app.py:239",
+        "backend/app.py:263"
+      ],
+      "aplicacao_nao_alterada": true
+    }
+  ],
+  "loc_totais_por_categoria": {
+    "configuracao": {
+      "arquivos": 11,
+      "bytes": 3713,
+      "linhas_fisicas_texto": 169,
+      "linhas_nao_vazias_texto": 159
+    },
+    "documentacao": {
+      "arquivos": 9,
+      "bytes": 81494,
+      "linhas_fisicas_texto": 1143,
+      "linhas_nao_vazias_texto": 857
+    },
+    "evidencias_geradas": {
+      "arquivos": 32,
+      "bytes": 1667558,
+      "linhas_fisicas_texto": 534,
+      "linhas_nao_vazias_texto": 525
+    },
+    "fixtures_testes": {
+      "arquivos": 4,
+      "bytes": 4545,
+      "linhas_fisicas_texto": 11,
+      "linhas_nao_vazias_texto": 7
+    },
+    "infraestrutura": {
+      "arquivos": 1,
+      "bytes": 589,
+      "linhas_fisicas_texto": 14,
+      "linhas_nao_vazias_texto": 12
+    },
+    "instrucoes_agentes": {
+      "arquivos": 1,
+      "bytes": 2598,
+      "linhas_fisicas_texto": 41,
+      "linhas_nao_vazias_texto": 28
+    },
+    "licencas": {
+      "arquivos": 2,
+      "bytes": 2183,
+      "linhas_fisicas_texto": 42,
+      "linhas_nao_vazias_texto": 34
+    },
+    "lockfile_gerado": {
+      "arquivos": 1,
+      "bytes": 381896,
+      "linhas_fisicas_texto": 10323,
+      "linhas_nao_vazias_texto": 10323
+    },
+    "producao_backend": {
+      "arquivos": 6,
+      "bytes": 27097,
+      "linhas_fisicas_texto": 606,
+      "linhas_nao_vazias_texto": 531
+    },
+    "producao_mobile": {
+      "arquivos": 15,
+      "bytes": 62689,
+      "linhas_fisicas_texto": 1490,
+      "linhas_nao_vazias_texto": 1392
+    },
+    "recursos_binarios": {
+      "arquivos": 6,
+      "bytes": 512654,
+      "linhas_fisicas_texto": 0,
+      "linhas_nao_vazias_texto": 0
+    },
+    "testes_integrados_e_apoio": {
+      "arquivos": 2,
+      "bytes": 29411,
+      "linhas_fisicas_texto": 556,
+      "linhas_nao_vazias_texto": 494
+    },
+    "testes_unitarios": {
+      "arquivos": 3,
+      "bytes": 37945,
+      "linhas_fisicas_texto": 749,
+      "linhas_nao_vazias_texto": 656
+    }
+  },
+  "arquivos": [
+    {
+      "arquivo": ".gitignore",
+      "categoria": "configuracao",
+      "bytes": 286,
+      "sha256": "c16a7a6feb524e9e7ed605acf2df0e00dcab0e25fbbe8a9b872c3eca70228158",
+      "binario": false,
+      "linhas_fisicas": 16,
+      "linhas_nao_vazias": 16,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "LICENSE",
+      "categoria": "licencas",
+      "bytes": 1077,
+      "sha256": "bb218ad4bdf09855aa824d5371b4ba22c72218c39ded5885be0b28f9272d5baf",
+      "binario": false,
+      "linhas_fisicas": 21,
+      "linhas_nao_vazias": 17,
+      "linhas_vazias": 4
+    },
+    {
+      "arquivo": "README.md",
+      "categoria": "documentacao",
+      "bytes": 11546,
+      "sha256": "19db09623ae116eef1489a03c17be6b62b87a8ce6a8c31c5390860a8cad841c3",
+      "binario": false,
+      "linhas_fisicas": 188,
+      "linhas_nao_vazias": 130,
+      "linhas_vazias": 58
+    },
+    {
+      "arquivo": "backend/app.py",
+      "categoria": "producao_backend",
+      "bytes": 14646,
+      "sha256": "25bffe831336ee7fc7307e4d40908ffe9419a5b1d9952b6b70e2896399fda1bd",
+      "binario": false,
+      "linhas_fisicas": 315,
+      "linhas_nao_vazias": 282,
+      "linhas_vazias": 33
+    },
+    {
+      "arquivo": "backend/autenticacao.py",
+      "categoria": "producao_backend",
+      "bytes": 693,
+      "sha256": "143f1d03750bc7435ed5c913718e572ab57fc178df6b70a0cc9e0ec8558211c5",
+      "binario": false,
+      "linhas_fisicas": 23,
+      "linhas_nao_vazias": 16,
+      "linhas_vazias": 7
+    },
+    {
+      "arquivo": "backend/database.py",
+      "categoria": "producao_backend",
+      "bytes": 1575,
+      "sha256": "5a235f0f651af6483fd26fcbe6175a7e27ab2bbe7643681b67d7d7359cef1488",
+      "binario": false,
+      "linhas_fisicas": 43,
+      "linhas_nao_vazias": 36,
+      "linhas_vazias": 7
+    },
+    {
+      "arquivo": "backend/init_db.py",
+      "categoria": "producao_backend",
+      "bytes": 504,
+      "sha256": "f7f3c8e5d806458f2c1473256587fce75c6fce156509d2be2ca190d773a650e9",
+      "binario": false,
+      "linhas_fisicas": 17,
+      "linhas_nao_vazias": 11,
+      "linhas_vazias": 6
+    },
+    {
+      "arquivo": "backend/midia.py",
+      "categoria": "producao_backend",
+      "bytes": 8048,
+      "sha256": "b7e1859060676f4c457f88543449fe3b494ca800ebb3c1934a3e10b45c968492",
+      "binario": false,
+      "linhas_fisicas": 169,
+      "linhas_nao_vazias": 151,
+      "linhas_vazias": 18
+    },
+    {
+      "arquivo": "backend/requirements.txt",
+      "categoria": "configuracao",
+      "bytes": 124,
+      "sha256": "4166834541a9a282794f6fbd92c726f069c9fcd04f1fb190c426ee7ec4a38f09",
+      "binario": false,
+      "linhas_fisicas": 8,
+      "linhas_nao_vazias": 8,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "backend/schema.sql",
+      "categoria": "producao_backend",
+      "bytes": 1631,
+      "sha256": "92815bf718311880978276a969ed0ad5c4870915152934a424fc8c12f5afab59",
+      "binario": false,
+      "linhas_fisicas": 39,
+      "linhas_nao_vazias": 35,
+      "linhas_vazias": 4
+    },
+    {
+      "arquivo": "backend/tests/fixtures/curto.mp4",
+      "categoria": "fixtures_testes",
+      "bytes": 1595,
+      "sha256": "ba71a6c13df7a1e0b27222c7e447520daa3df646a0de9965d3aa85b4e2ccd3fd",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "backend/tests/test_api.py",
+      "categoria": "testes_unitarios",
+      "bytes": 13071,
+      "sha256": "ae11acf11f92ea173e2bc9b3e090509b280bd9bbe88c8e4fb411b2487efaf042",
+      "binario": false,
+      "linhas_fisicas": 268,
+      "linhas_nao_vazias": 238,
+      "linhas_vazias": 30
+    },
+    {
+      "arquivo": "backend/tests/test_midia.py",
+      "categoria": "testes_unitarios",
+      "bytes": 8445,
+      "sha256": "715e6d3995c34c4f24746e4c5af8942d72c2ae6f775144b9eeebbb722f69521f",
+      "binario": false,
+      "linhas_fisicas": 180,
+      "linhas_nao_vazias": 149,
+      "linhas_vazias": 31
+    },
+    {
+      "arquivo": "backend/tests/test_v2.py",
+      "categoria": "testes_unitarios",
+      "bytes": 16429,
+      "sha256": "1b5f325f27e23d48e625d38f012decaa2323efe3d4290ca28085eaf8bbfc6614",
+      "binario": false,
+      "linhas_fisicas": 301,
+      "linhas_nao_vazias": 269,
+      "linhas_vazias": 32
+    },
+    {
+      "arquivo": "documentacao/AMBIENTE_NUVEM.md",
+      "categoria": "documentacao",
+      "bytes": 3978,
+      "sha256": "f614981f5f447a29ed7d836053ef9a408d10893d2b074bd1daefd6ac2b150068",
+      "binario": false,
+      "linhas_fisicas": 33,
+      "linhas_nao_vazias": 21,
+      "linhas_vazias": 12
+    },
+    {
+      "arquivo": "documentacao/API.md",
+      "categoria": "documentacao",
+      "bytes": 8225,
+      "sha256": "671c969e77287029a3ba83373a586f9b1bcf44b80cc085ef16e69648c02faa00",
+      "binario": false,
+      "linhas_fisicas": 180,
+      "linhas_nao_vazias": 138,
+      "linhas_vazias": 42
+    },
+    {
+      "arquivo": "documentacao/APRESENTACAO.md",
+      "categoria": "documentacao",
+      "bytes": 9115,
+      "sha256": "6248aec43295192761680813ea7389e13ce740d42f285740f50a92b750b3b167",
+      "binario": false,
+      "linhas_fisicas": 91,
+      "linhas_nao_vazias": 71,
+      "linhas_vazias": 20
+    },
+    {
+      "arquivo": "documentacao/ARQUITETURA.md",
+      "categoria": "documentacao",
+      "bytes": 9400,
+      "sha256": "7d83da5324a24f543960c00a562b28793739e8dd1bacdbaa65a3d8de1d17852c",
+      "binario": false,
+      "linhas_fisicas": 187,
+      "linhas_nao_vazias": 159,
+      "linhas_vazias": 28
+    },
+    {
+      "arquivo": "documentacao/DIARIO.md",
+      "categoria": "documentacao",
+      "bytes": 3351,
+      "sha256": "72524fde72c57b76e2a6c5691f1e741b5d73f36701f69d069ac83717be9c3eb8",
+      "binario": false,
+      "linhas_fisicas": 47,
+      "linhas_nao_vazias": 39,
+      "linhas_vazias": 8
+    },
+    {
+      "arquivo": "documentacao/ENTREGA.md",
+      "categoria": "documentacao",
+      "bytes": 3427,
+      "sha256": "2eac79d1c21bfae4cc5a02810f475f9c33d4ade8ff890a50f5d32705a3cd08a9",
+      "binario": false,
+      "linhas_fisicas": 50,
+      "linhas_nao_vazias": 40,
+      "linhas_vazias": 10
+    },
+    {
+      "arquivo": "documentacao/RELATORIO_BASE.md",
+      "categoria": "documentacao",
+      "bytes": 16212,
+      "sha256": "40fd452d4e98223338796ee5d315f6bf0485ec2d8ac6f81287abae2faeba7d7a",
+      "binario": false,
+      "linhas_fisicas": 162,
+      "linhas_nao_vazias": 107,
+      "linhas_vazias": 55
+    },
+    {
+      "arquivo": "documentacao/TESTES.md",
+      "categoria": "documentacao",
+      "bytes": 16240,
+      "sha256": "18529c2b017487cb910f839e8266ce1ffe2ffd539a3883e78af7fcdbc2274e85",
+      "binario": false,
+      "linhas_fisicas": 205,
+      "linhas_nao_vazias": 152,
+      "linhas_vazias": 53
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/00-lista-vazia.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 40391,
+      "sha256": "19d86e321a654977098907832df55c2b1f636590902eb335c1f8c1721bc6166a",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/00-login.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 32536,
+      "sha256": "0f76726d5d7cbcf4889fe590f6139eda5c2b95e3ce24efbc5fb07b598ed5d19c",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/01-cadastro.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 54518,
+      "sha256": "8771e28998b3cb0c6121563a1fe1358c16f4ae05507cbaa99eb74a4893057721",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/01b-falha-envio.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 47775,
+      "sha256": "07e504d930440b84c2263b1c573a44114265659f1fc0d37de9f3708f67c1af54",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/02-detalhes.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 47011,
+      "sha256": "575cd91a10e6043ae7a4bc6d4d23cd2456bd5c6ea2ad75a7ee66d3fa359f12b2",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/02-mapa.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 39743,
+      "sha256": "10ff3bfc4bcd2c9f8f64c19797bbf9e24ad63997a79cfcc46cc9f59c3a45f1c0",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/02b-resolvido.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 37747,
+      "sha256": "ffcb0e40eb612f0ce53ddab8145f22ed121b078665dac31859fdb2e9161eb13b",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/03-lista.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 45358,
+      "sha256": "263ea18d6305382f48f0d58aae966638fa2889ea4169ba8172478659546a8c10",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/03b-video.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 46387,
+      "sha256": "85d7dee967e60b4465229755410bc2c797cb79afa873532fe73fcf40a4b1893f",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/04-api-desligada.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 40617,
+      "sha256": "9651dcc6d30c63b6e067a5b7c9686baba2e49daf8a915660d09e5cfe87f6585e",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/05-recuperacao.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 55544,
+      "sha256": "e5af72cbb16a13b34e798a8326101b2d1a4214f756cb36f2cf6f2cc38205f0f5",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/06-logout.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 35323,
+      "sha256": "b9cf22ae165624103639da1b6656c3366f7eedfbdca6bcb3cba14dfd32cd92a3",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/LEIA-ME.md",
+      "categoria": "evidencias_geradas",
+      "bytes": 476,
+      "sha256": "6530685cb00d4680a5273d49223597efe5669d989f149ea9f4ac6f2488e966a7",
+      "binario": false,
+      "linhas_fisicas": 5,
+      "linhas_nao_vazias": 3,
+      "linhas_vazias": 2
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/SHA256SUMS",
+      "categoria": "evidencias_geradas",
+      "bytes": 1230,
+      "sha256": "c2a6d04817fcb1b7fab033a5fda4b123a91803088a9043e7b55be545db132ef6",
+      "binario": false,
+      "linhas_fisicas": 15,
+      "linhas_nao_vazias": 15,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/cliente-a.webm",
+      "categoria": "evidencias_geradas",
+      "bytes": 401943,
+      "sha256": "835e9c1831ca6b6950655c49bc293f9968a7b1819711e68ee37ece9cff996fe9",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/cliente-b.webm",
+      "categoria": "evidencias_geradas",
+      "bytes": 81394,
+      "sha256": "87b901f8981589bd23c8bfb2cb55e8212eb47a6218057354a1d99036aa671499",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/index.html",
+      "categoria": "evidencias_geradas",
+      "bytes": 10969,
+      "sha256": "0243532820d79934be960555378f399e8957e2734befae71d7294b2e6b65a0b0",
+      "binario": false,
+      "linhas_fisicas": 131,
+      "linhas_nao_vazias": 131,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "documentacao/evidencias-v2/resultado.json",
+      "categoria": "evidencias_geradas",
+      "bytes": 4571,
+      "sha256": "dd2f2c296f6360584437c52e4bbca5c732c04ca5a99e0d09aa705320bb922078",
+      "binario": false,
+      "linhas_fisicas": 63,
+      "linhas_nao_vazias": 63,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "documentacao/evidencias/00-lista-vazia.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 34364,
+      "sha256": "8d7ebbdc23f1022833467b474ceb519db0104146aa74a11467258e53b6ee6eab",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias/01-cadastro.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 47755,
+      "sha256": "badf01429c15a5e8073bc6d8226dd0b02830fe517476ab1ba19cdb09862003d4",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias/01b-falha-envio.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 50891,
+      "sha256": "d0028bcc1cbe6765e04ba31ed080d4beb7ba8dc73115c5e85ecd7dd96b4ca58f",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias/02-detalhes.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 46796,
+      "sha256": "61af386481cbb14e192659164622cc35cb46508cd9860019c0ca43e5a2bc4dc4",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias/02b-resolvido.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 47968,
+      "sha256": "489b5d0bf3ce0efdd0c6063f455e87807c0283cac65ef16f44a757f0bf89add9",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias/03-lista.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 40602,
+      "sha256": "18c2947eecf58bc864f0367aced4bb5eff4fae62c185c4ea41632168f8140dbc",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias/04-api-desligada.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 37903,
+      "sha256": "56966626c606e6df2386299ea065921a7d3b59d164d50f9dcc2ceaef1556425d",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias/05-recuperacao.png",
+      "categoria": "evidencias_geradas",
+      "bytes": 40602,
+      "sha256": "18c2947eecf58bc864f0367aced4bb5eff4fae62c185c4ea41632168f8140dbc",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias/LEIA-ME.md",
+      "categoria": "evidencias_geradas",
+      "bytes": 1696,
+      "sha256": "2420c8e2864c258a4cadcf1a7b7bb055fe22b43ce5f5e08000c151a97da8883c",
+      "binario": false,
+      "linhas_fisicas": 15,
+      "linhas_nao_vazias": 8,
+      "linhas_vazias": 7
+    },
+    {
+      "arquivo": "documentacao/evidencias/SHA256SUMS",
+      "categoria": "evidencias_geradas",
+      "bytes": 913,
+      "sha256": "ab9c64b91a55c8b550a1f32bb1a7e3e37c4e5e1348da6614a116995b5ffa5501",
+      "binario": false,
+      "linhas_fisicas": 11,
+      "linhas_nao_vazias": 11,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "documentacao/evidencias/cliente-a.webm",
+      "categoria": "evidencias_geradas",
+      "bytes": 178180,
+      "sha256": "2b6ae63d2b38171dab49129eac33ad43e3522cc9db4ffe59bc1b8f0307b01024",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias/cliente-b.webm",
+      "categoria": "evidencias_geradas",
+      "bytes": 98374,
+      "sha256": "b49a2363d629846e634b852fd5f284c797b64bcd7a12a7ece21d5741185b45d9",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "documentacao/evidencias/index.html",
+      "categoria": "evidencias_geradas",
+      "bytes": 15735,
+      "sha256": "368c7db68e9a84018266f08405c9023c92c86e45bda1e95debdf49e21d96b692",
+      "binario": false,
+      "linhas_fisicas": 257,
+      "linhas_nao_vazias": 257,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "documentacao/evidencias/resultado.json",
+      "categoria": "evidencias_geradas",
+      "bytes": 2246,
+      "sha256": "2bb62c9c8646a9aee2e16e53f0e9808743d08a9d0a63087bfb75484b5f935ba6",
+      "binario": false,
+      "linhas_fisicas": 37,
+      "linhas_nao_vazias": 37,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "mobile/.env.example",
+      "categoria": "configuracao",
+      "bytes": 195,
+      "sha256": "ae3529adc38edd578a51ef98fc553590545f659300d5c1ed36a5b773cc3e9958",
+      "binario": false,
+      "linhas_fisicas": 3,
+      "linhas_nao_vazias": 3,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "mobile/.gitignore",
+      "categoria": "configuracao",
+      "bytes": 440,
+      "sha256": "5936b94a73a28b6735de672b54c2c058a33c9ae1edb62d87d6a4418e14447805",
+      "binario": false,
+      "linhas_fisicas": 41,
+      "linhas_nao_vazias": 32,
+      "linhas_vazias": 9
+    },
+    {
+      "arquivo": "mobile/.nvmrc",
+      "categoria": "configuracao",
+      "bytes": 8,
+      "sha256": "d9f318747a126ce2247661af67852b185def7789492eabfad7bba322be087c33",
+      "binario": false,
+      "linhas_fisicas": 1,
+      "linhas_nao_vazias": 1,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "mobile/AGENTS.md",
+      "categoria": "instrucoes_agentes",
+      "bytes": 2598,
+      "sha256": "b7d381dd55800d242252e8bf89a40b026586d254e34908210931bc35582396a3",
+      "binario": false,
+      "linhas_fisicas": 41,
+      "linhas_nao_vazias": 28,
+      "linhas_vazias": 13
+    },
+    {
+      "arquivo": "mobile/App.js",
+      "categoria": "producao_mobile",
+      "bytes": 6962,
+      "sha256": "082069eb7baf6fcb7b2760f94f241d44878b60d2fd61f2e9234e3078a0621cff",
+      "binario": false,
+      "linhas_fisicas": 192,
+      "linhas_nao_vazias": 179,
+      "linhas_vazias": 13
+    },
+    {
+      "arquivo": "mobile/LICENSE",
+      "categoria": "licencas",
+      "bytes": 1106,
+      "sha256": "fb3ca4a837f5779e83cef89b78253a8949cfb9429c340309f62d0465ec6610b4",
+      "binario": false,
+      "linhas_fisicas": 21,
+      "linhas_nao_vazias": 17,
+      "linhas_vazias": 4
+    },
+    {
+      "arquivo": "mobile/app.json",
+      "categoria": "configuracao",
+      "bytes": 1095,
+      "sha256": "85cb4a79950b198d3a1b6815d8a2c0a8a648c39d25411590e44493946506e535",
+      "binario": false,
+      "linhas_fisicas": 42,
+      "linhas_nao_vazias": 42,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "mobile/assets/android-icon-background.png",
+      "categoria": "recursos_binarios",
+      "bytes": 17549,
+      "sha256": "fb139c2dee362ebf2070e23b96da6fc0d43f8492de38b8af1fd7223e19b5861d",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "mobile/assets/android-icon-foreground.png",
+      "categoria": "recursos_binarios",
+      "bytes": 78796,
+      "sha256": "9e3d0315a33c6799de601dd34cd8bf8cc3a8d16f3bf75592baec2ceb7240b391",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "mobile/assets/android-icon-monochrome.png",
+      "categoria": "recursos_binarios",
+      "bytes": 4140,
+      "sha256": "6371fc2c12e33ad2215a86c281db3d682a81bebe7c957a842c13b8bf00cceb83",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "mobile/assets/favicon.png",
+      "categoria": "recursos_binarios",
+      "bytes": 1129,
+      "sha256": "a4e030697a7571b3e95d31860e4da55d2f98e5e861e2b55e414f45a8556828ba",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "mobile/assets/icon.png",
+      "categoria": "recursos_binarios",
+      "bytes": 393493,
+      "sha256": "119462bb78eb240a65c869fc067ee599639b3cb5a41953f25c07b17d2a8c7e0f",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "mobile/assets/splash-icon.png",
+      "categoria": "recursos_binarios",
+      "bytes": 17547,
+      "sha256": "5f4c0a732b6325bf4071d9124d2ae67e037cb24fcc9c482ef82bea742109a3b8",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "mobile/eslint.config.js",
+      "categoria": "configuracao",
+      "bytes": 197,
+      "sha256": "2d698714bd3abf6335826cd4667126d1d09cce1893e1d46c3065a00f03fc456b",
+      "binario": false,
+      "linhas_fisicas": 7,
+      "linhas_nao_vazias": 6,
+      "linhas_vazias": 1
+    },
+    {
+      "arquivo": "mobile/index.js",
+      "categoria": "producao_mobile",
+      "bytes": 307,
+      "sha256": "5c157f4d44972d9c84415e1e4bda595b3abcd8cf733f8a9cd20935bec3eccc42",
+      "binario": false,
+      "linhas_fisicas": 8,
+      "linhas_nao_vazias": 6,
+      "linhas_vazias": 2
+    },
+    {
+      "arquivo": "mobile/package-lock.json",
+      "categoria": "lockfile_gerado",
+      "bytes": 381896,
+      "sha256": "43c3fc576dc1392345e2dce2994755a963cbce4c32a0b34f256a18cb6031d078",
+      "binario": false,
+      "linhas_fisicas": 10323,
+      "linhas_nao_vazias": 10323,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "mobile/package.json",
+      "categoria": "configuracao",
+      "bytes": 879,
+      "sha256": "819238ac44ab43aba2fd86c7fbcc45f16d00e5f8aded1c113c939e25cb8fe886",
+      "binario": false,
+      "linhas_fisicas": 35,
+      "linhas_nao_vazias": 35,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "mobile/src/components/AnexoViewer.js",
+      "categoria": "producao_mobile",
+      "bytes": 4093,
+      "sha256": "4a1c62528350a17cdaf48be907c616ad70c4b3e41300e022de81bbf0d7738d2f",
+      "binario": false,
+      "linhas_fisicas": 109,
+      "linhas_nao_vazias": 102,
+      "linhas_vazias": 7
+    },
+    {
+      "arquivo": "mobile/src/components/Interface.js",
+      "categoria": "producao_mobile",
+      "bytes": 2888,
+      "sha256": "a67468871486b556e5b23eed410cfb54834168ed3a3be1dbf956d61d495dd0c7",
+      "binario": false,
+      "linhas_fisicas": 76,
+      "linhas_nao_vazias": 70,
+      "linhas_vazias": 6
+    },
+    {
+      "arquivo": "mobile/src/components/LocalizacaoCampos.js",
+      "categoria": "producao_mobile",
+      "bytes": 3343,
+      "sha256": "4b4c9c712a30d727e24a086e8ef005fac61d0dd90bda5b3d101db6cfb330d7c3",
+      "binario": false,
+      "linhas_fisicas": 77,
+      "linhas_nao_vazias": 73,
+      "linhas_vazias": 4
+    },
+    {
+      "arquivo": "mobile/src/components/MapaOcorrencias.native.js",
+      "categoria": "producao_mobile",
+      "bytes": 3254,
+      "sha256": "0b7f3c6e8111d0d3d349f6da957216b5c59e978476c304e26947d9e2c7a45912",
+      "binario": false,
+      "linhas_fisicas": 68,
+      "linhas_nao_vazias": 63,
+      "linhas_vazias": 5
+    },
+    {
+      "arquivo": "mobile/src/components/MapaOcorrencias.web.js",
+      "categoria": "producao_mobile",
+      "bytes": 5177,
+      "sha256": "249aee03da00935a2433a444733a51e56fe49765d7606d893e30ae02ba729d11",
+      "binario": false,
+      "linhas_fisicas": 107,
+      "linhas_nao_vazias": 101,
+      "linhas_vazias": 6
+    },
+    {
+      "arquivo": "mobile/src/components/SeletorAnexo.js",
+      "categoria": "producao_mobile",
+      "bytes": 4373,
+      "sha256": "e74230ea83426759c74009256d99f233d91cdabde75cbace3caba15a657c0045",
+      "binario": false,
+      "linhas_fisicas": 85,
+      "linhas_nao_vazias": 80,
+      "linhas_vazias": 5
+    },
+    {
+      "arquivo": "mobile/src/config.js",
+      "categoria": "producao_mobile",
+      "bytes": 1280,
+      "sha256": "a594a09392a220237f4c987f921e184d2dabdaba8c263b34aa451bd40edef3a0",
+      "binario": false,
+      "linhas_fisicas": 30,
+      "linhas_nao_vazias": 27,
+      "linhas_vazias": 3
+    },
+    {
+      "arquivo": "mobile/src/screens/AuthScreen.js",
+      "categoria": "producao_mobile",
+      "bytes": 4755,
+      "sha256": "d41d2d6d797d3a4f8888f5c0d8f5187ddf426b36a9074bbf84010c215a89b8cc",
+      "binario": false,
+      "linhas_fisicas": 115,
+      "linhas_nao_vazias": 110,
+      "linhas_vazias": 5
+    },
+    {
+      "arquivo": "mobile/src/screens/CadastroScreen.js",
+      "categoria": "producao_mobile",
+      "bytes": 5984,
+      "sha256": "b484fde16919f2215bf581117f1b7bcab1d7e99cce74b0656b5fabb22c4fb468",
+      "binario": false,
+      "linhas_fisicas": 123,
+      "linhas_nao_vazias": 118,
+      "linhas_vazias": 5
+    },
+    {
+      "arquivo": "mobile/src/screens/DetalhesScreen.js",
+      "categoria": "producao_mobile",
+      "bytes": 5476,
+      "sha256": "c8b8ac70f60cf50496e2ecf3a16f41386560b876192a6284c0f4af99cc583d03",
+      "binario": false,
+      "linhas_fisicas": 134,
+      "linhas_nao_vazias": 125,
+      "linhas_vazias": 9
+    },
+    {
+      "arquivo": "mobile/src/screens/ListaScreen.js",
+      "categoria": "producao_mobile",
+      "bytes": 7059,
+      "sha256": "5d3232a98cd3807a97b07a5966ca014d33c698d486b0dacd4bf2d7b8e854aa07",
+      "binario": false,
+      "linhas_fisicas": 155,
+      "linhas_nao_vazias": 148,
+      "linhas_vazias": 7
+    },
+    {
+      "arquivo": "mobile/src/services/api.js",
+      "categoria": "producao_mobile",
+      "bytes": 6007,
+      "sha256": "f878125e70188d44e5377834091a52a5ee53f32726d3ec7a5ed85da96426ccac",
+      "binario": false,
+      "linhas_fisicas": 162,
+      "linhas_nao_vazias": 146,
+      "linhas_vazias": 16
+    },
+    {
+      "arquivo": "mobile/src/styles.d.ts",
+      "categoria": "configuracao",
+      "bytes": 96,
+      "sha256": "9eeed81c8778a6a3bb002be6bee4522aff360160f577325e24b0eea9732e0ddf",
+      "binario": false,
+      "linhas_fisicas": 2,
+      "linhas_nao_vazias": 2,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "mobile/src/theme.js",
+      "categoria": "producao_mobile",
+      "bytes": 1731,
+      "sha256": "39944b8e1c8ca8724b820336d49e095002e1667558580b330afb0d0b732b6eb2",
+      "binario": false,
+      "linhas_fisicas": 49,
+      "linhas_nao_vazias": 44,
+      "linhas_vazias": 5
+    },
+    {
+      "arquivo": "mobile/tsconfig.json",
+      "categoria": "configuracao",
+      "bytes": 295,
+      "sha256": "a728bee35bff9a05c3501f149a18cda4fbd2e74a7b5ed8acdd5816a3b06a0e36",
+      "binario": false,
+      "linhas_fisicas": 12,
+      "linhas_nao_vazias": 12,
+      "linhas_vazias": 0
+    },
+    {
+      "arquivo": "scripts/configurar_nuvem.sh",
+      "categoria": "infraestrutura",
+      "bytes": 589,
+      "sha256": "e420bd99c04c7e4fb2d79595176d4001720d5b6f66343e74f468f92fdbe409b0",
+      "binario": false,
+      "linhas_fisicas": 14,
+      "linhas_nao_vazias": 12,
+      "linhas_vazias": 2
+    },
+    {
+      "arquivo": "tests/fixtures/LEIA-ME.md",
+      "categoria": "fixtures_testes",
+      "bytes": 648,
+      "sha256": "657b31d9a3264c4fe995fd4739c0f7da3b2f5ef500533d2978b61063837d6941",
+      "binario": false,
+      "linhas_fisicas": 11,
+      "linhas_nao_vazias": 7,
+      "linhas_vazias": 4
+    },
+    {
+      "arquivo": "tests/fixtures/foto-teste.png",
+      "categoria": "fixtures_testes",
+      "bytes": 157,
+      "sha256": "5f3e26a132b064d3259dfcd6c7081c96a3e6ed67c9798157220a0aaf5f09af6a",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "tests/fixtures/video-teste.mp4",
+      "categoria": "fixtures_testes",
+      "bytes": 2145,
+      "sha256": "9d02923514aca37d834e6a1fd9f1d44089c529661ad64b24947d975f7b6a2513",
+      "binario": true,
+      "linhas_fisicas": null,
+      "linhas_nao_vazias": null,
+      "linhas_vazias": null
+    },
+    {
+      "arquivo": "tests/fluxo_web.py",
+      "categoria": "testes_integrados_e_apoio",
+      "bytes": 23635,
+      "sha256": "9b0df613dcefde09076616469eaf027b0230153334585d1bf2a638457577e3a5",
+      "binario": false,
+      "linhas_fisicas": 423,
+      "linhas_nao_vazias": 370,
+      "linhas_vazias": 53
+    },
+    {
+      "arquivo": "tests/gravacao.py",
+      "categoria": "testes_integrados_e_apoio",
+      "bytes": 5776,
+      "sha256": "dc85ff3c43caad5ebd68d2d4c65ab3e51c409aaba4af09d02d93b14855b0c4a5",
+      "binario": false,
+      "linhas_fisicas": 133,
+      "linhas_nao_vazias": 124,
+      "linhas_vazias": 9
+    },
+    {
+      "arquivo": "tests/requirements-e2e.txt",
+      "categoria": "configuracao",
+      "bytes": 98,
+      "sha256": "e0e80cfb81170b34fb9b232bea08a3cfddb8e48c26a1390aef496fdf5263a050",
+      "binario": false,
+      "linhas_fisicas": 2,
+      "linhas_nao_vazias": 2,
+      "linhas_vazias": 0
+    }
+  ],
+  "modulos": [
+    {
+      "arquivo": "backend/app.py",
+      "categoria": "producao_backend",
+      "linhas_fisicas": 315,
+      "funcoes": [
+        {
+          "nome": "create_app",
+          "linha": 20,
+          "linha_final": 311
+        },
+        {
+          "nome": "falha",
+          "linha": 31,
+          "linha_final": 35
+        },
+        {
+          "nome": "verificar_sessao",
+          "linha": 38,
+          "linha_final": 62
+        },
+        {
+          "nome": "finalizar_resposta",
+          "linha": 65,
+          "linha_final": 75
+        },
+        {
+          "nome": "erro_http",
+          "linha": 78,
+          "linha_final": 84
+        },
+        {
+          "nome": "erro_midia",
+          "linha": 87,
+          "linha_final": 88
+        },
+        {
+          "nome": "erro_banco",
+          "linha": 91,
+          "linha_final": 93
+        },
+        {
+          "nome": "erro_inesperado",
+          "linha": 96,
+          "linha_final": 98
+        },
+        {
+          "nome": "ler_json",
+          "linha": 100,
+          "linha_final": 104
+        },
+        {
+          "nome": "validar_email_senha",
+          "linha": 106,
+          "linha_final": 113
+        },
+        {
+          "nome": "resposta_sessao",
+          "linha": 115,
+          "linha_final": 116
+        },
+        {
+          "nome": "saude",
+          "linha": 119,
+          "linha_final": 120
+        },
+        {
+          "nome": "cadastrar_usuario",
+          "linha": 123,
+          "linha_final": 148
+        },
+        {
+          "nome": "entrar",
+          "linha": 151,
+          "linha_final": 165
+        },
+        {
+          "nome": "minha_conta",
+          "linha": 168,
+          "linha_final": 169
+        },
+        {
+          "nome": "sair",
+          "linha": 172,
+          "linha_final": 175
+        },
+        {
+          "nome": "pode_alterar",
+          "linha": 177,
+          "linha_final": 179
+        },
+        {
+          "nome": "serializar_ocorrencia",
+          "linha": 181,
+          "linha_final": 189
+        },
+        {
+          "nome": "listar_ocorrencias",
+          "linha": 192,
+          "linha_final": 196
+        },
+        {
+          "nome": "validar_relato",
+          "linha": 198,
+          "linha_final": 231
+        },
+        {
+          "nome": "criar_ocorrencia",
+          "linha": 234,
+          "linha_final": 273
+        },
+        {
+          "nome": "obter_ocorrencia",
+          "linha": 276,
+          "linha_final": 282
+        },
+        {
+          "nome": "atualizar_situacao",
+          "linha": 285,
+          "linha_final": 301
+        },
+        {
+          "nome": "obter_anexo",
+          "linha": 304,
+          "linha_final": 309
+        }
+      ],
+      "classes": [],
+      "imports": [
+        "autenticacao",
+        "database",
+        "flask",
+        "math",
+        "midia",
+        "re",
+        "sqlite3",
+        "werkzeug.exceptions",
+        "werkzeug.security"
+      ]
+    },
+    {
+      "arquivo": "backend/autenticacao.py",
+      "categoria": "producao_backend",
+      "linhas_fisicas": 23,
+      "funcoes": [
+        {
+          "nome": "agora_utc",
+          "linha": 8,
+          "linha_final": 9
+        },
+        {
+          "nome": "hash_token",
+          "linha": 12,
+          "linha_final": 13
+        },
+        {
+          "nome": "criar_sessao",
+          "linha": 16,
+          "linha_final": 23
+        }
+      ],
+      "classes": [],
+      "imports": [
+        "datetime",
+        "hashlib",
+        "secrets"
+      ]
+    },
+    {
+      "arquivo": "backend/database.py",
+      "categoria": "producao_backend",
+      "linhas_fisicas": 43,
+      "funcoes": [
+        {
+          "nome": "conectar",
+          "linha": 13,
+          "linha_final": 25
+        },
+        {
+          "nome": "inicializar_banco",
+          "linha": 28,
+          "linha_final": 43
+        }
+      ],
+      "classes": [],
+      "imports": [
+        "contextlib",
+        "pathlib",
+        "sqlite3"
+      ]
+    },
+    {
+      "arquivo": "backend/init_db.py",
+      "categoria": "producao_backend",
+      "linhas_fisicas": 17,
+      "funcoes": [
+        {
+          "nome": "main",
+          "linha": 8,
+          "linha_final": 13
+        }
+      ],
+      "classes": [],
+      "imports": [
+        "argparse",
+        "database"
+      ]
+    },
+    {
+      "arquivo": "backend/midia.py",
+      "categoria": "producao_backend",
+      "linhas_fisicas": 169,
+      "funcoes": [
+        {
+          "nome": "_foto_limpa",
+          "linha": 24,
+          "linha_final": 55
+        },
+        {
+          "nome": "_caixas",
+          "linha": 58,
+          "linha_final": 77
+        },
+        {
+          "nome": "_validar_mp4",
+          "linha": 80,
+          "linha_final": 123
+        },
+        {
+          "nome": "preparar_arquivo",
+          "linha": 127,
+          "linha_final": 158
+        },
+        {
+          "nome": "apagar_arquivo",
+          "linha": 161,
+          "linha_final": 169
+        },
+        {
+          "nome": "__init__",
+          "linha": 19,
+          "linha_final": 21
+        }
+      ],
+      "classes": [
+        {
+          "nome": "MidiaInvalida",
+          "linha": 18
+        }
+      ],
+      "imports": [
+        "PIL",
+        "io",
+        "pathlib",
+        "re",
+        "struct",
+        "uuid",
+        "warnings"
+      ]
+    },
+    {
+      "arquivo": "backend/schema.sql",
+      "categoria": "producao_backend",
+      "linhas_fisicas": 39
+    },
+    {
+      "arquivo": "backend/tests/test_api.py",
+      "categoria": "testes_unitarios",
+      "linhas_fisicas": 268,
+      "funcoes": [
+        {
+          "nome": "test_saude_antes_de_criar_banco",
+          "linha": 17,
+          "linha_final": 24
+        },
+        {
+          "nome": "setUp",
+          "linha": 28,
+          "linha_final": 46
+        },
+        {
+          "nome": "criar",
+          "linha": 48,
+          "linha_final": 49
+        },
+        {
+          "nome": "verificar_erro",
+          "linha": 51,
+          "linha_final": 55
+        },
+        {
+          "nome": "test_fluxo_criar_listar_detalhar_e_resolver",
+          "linha": 57,
+          "linha_final": 81
+        },
+        {
+          "nome": "test_persistencia_em_nova_instancia",
+          "linha": 83,
+          "linha_final": 90
+        },
+        {
+          "nome": "test_lista_mais_recentes_primeiro",
+          "linha": 92,
+          "linha_final": 95
+        },
+        {
+          "nome": "test_trim_e_campos_controlados_pelo_servidor",
+          "linha": 97,
+          "linha_final": 113
+        },
+        {
+          "nome": "test_textos_invalidos",
+          "linha": 115,
+          "linha_final": 124
+        },
+        {
+          "nome": "test_limites_exatos_dos_textos_sao_aceitos",
+          "linha": 126,
+          "linha_final": 128
+        },
+        {
+          "nome": "test_gravidades_validas",
+          "linha": 130,
+          "linha_final": 133
+        },
+        {
+          "nome": "test_gravidade_invalida",
+          "linha": 135,
+          "linha_final": 141
+        },
+        {
+          "nome": "test_situacao_invalida_nao_modifica_registro",
+          "linha": 143,
+          "linha_final": 150
+        },
+        {
+          "nome": "test_situacao_remove_espacos",
+          "linha": 152,
+          "linha_final": 158
+        },
+        {
+          "nome": "test_identificadores_inexistentes",
+          "linha": 160,
+          "linha_final": 165
+        },
+        {
+          "nome": "test_content_type_e_json_malformado",
+          "linha": 167,
+          "linha_final": 179
+        },
+        {
+          "nome": "test_texto_sql_e_armazenado_sem_executar",
+          "linha": 181,
+          "linha_final": 186
+        },
+        {
+          "nome": "test_inicializacao_idempotente_preserva_registros",
+          "linha": 188,
+          "linha_final": 196
+        },
+        {
+          "nome": "test_erro_sqlite_retorna_500_sem_detalhes_internos",
+          "linha": 198,
+          "linha_final": 203
+        },
+        {
+          "nome": "test_excecao_inesperada_retorna_json_500",
+          "linha": 205,
+          "linha_final": 210
+        },
+        {
+          "nome": "test_rollback_em_falha_sqlite_preserva_situacao",
+          "linha": 212,
+          "linha_final": 224
+        },
+        {
+          "nome": "test_transacao_desfaz_alteracoes_e_fecha_conexao",
+          "linha": 226,
+          "linha_final": 238
+        },
+        {
+          "nome": "test_conexao_fechada_apos_sucesso",
+          "linha": 240,
+          "linha_final": 244
+        },
+        {
+          "nome": "test_cors_expo_web_e_preflight",
+          "linha": 246,
+          "linha_final": 264
+        }
+      ],
+      "classes": [
+        {
+          "nome": "SaudeSemBancoTest",
+          "linha": 16
+        },
+        {
+          "nome": "OcorrenciasTest",
+          "linha": 27
+        }
+      ],
+      "imports": [
+        "app",
+        "database",
+        "datetime",
+        "pathlib",
+        "sqlite3",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ]
+    },
+    {
+      "arquivo": "backend/tests/test_midia.py",
+      "categoria": "testes_unitarios",
+      "linhas_fisicas": 180,
+      "funcoes": [
+        {
+          "nome": "foto_em_memoria",
+          "linha": 22,
+          "linha_final": 26
+        },
+        {
+          "nome": "caixa",
+          "linha": 29,
+          "linha_final": 30
+        },
+        {
+          "nome": "setUp",
+          "linha": 34,
+          "linha_final": 37
+        },
+        {
+          "nome": "enviar",
+          "linha": 39,
+          "linha_final": 44
+        },
+        {
+          "nome": "conferir_rejeicao",
+          "linha": 46,
+          "linha_final": 52
+        },
+        {
+          "nome": "test_jpeg_corrige_orientacao_e_remove_exif_inclusive_gps",
+          "linha": 54,
+          "linha_final": 70
+        },
+        {
+          "nome": "test_png_preserva_transparencia_e_detecta_conteudo",
+          "linha": 72,
+          "linha_final": 81
+        },
+        {
+          "nome": "test_nomes_uuid_nao_reutilizam_nome_enviado",
+          "linha": 83,
+          "linha_final": 88
+        },
+        {
+          "nome": "test_jpeg_falso_e_jpeg_truncado_sao_rejeitados",
+          "linha": 90,
+          "linha_final": 92
+        },
+        {
+          "nome": "test_svg_e_html_nao_sao_imagens_aceitas",
+          "linha": 94,
+          "linha_final": 96
+        },
+        {
+          "nome": "test_vazio_ou_ausente_sao_rejeitados",
+          "linha": 98,
+          "linha_final": 103
+        },
+        {
+          "nome": "test_arquivo_maior_que_vinte_mib_e_rejeitado",
+          "linha": 105,
+          "linha_final": 106
+        },
+        {
+          "nome": "test_limite_de_pixels_rejeita_bomba_de_descompressao",
+          "linha": 108,
+          "linha_final": 112
+        },
+        {
+          "nome": "test_video_mp4_real_e_aceito_sem_confiar_na_extensao",
+          "linha": 114,
+          "linha_final": 121
+        },
+        {
+          "nome": "test_video_mp4_truncado_e_tamanhos_invalidos_sao_rejeitados",
+          "linha": 123,
+          "linha_final": 127
+        },
+        {
+          "nome": "test_tres_caixas_vazias_nao_representam_video_mp4",
+          "linha": 129,
+          "linha_final": 131
+        },
+        {
+          "nome": "test_mp4_sem_trilha_de_video_e_rejeitado",
+          "linha": 133,
+          "linha_final": 138
+        },
+        {
+          "nome": "test_mp4_sem_trilhas_e_rejeitado",
+          "linha": 140,
+          "linha_final": 146
+        },
+        {
+          "nome": "test_falha_ao_mover_arquivo_limpa_temporario",
+          "linha": 148,
+          "linha_final": 152
+        },
+        {
+          "nome": "test_remocao_segura_e_idempotente",
+          "linha": 154,
+          "linha_final": 163
+        },
+        {
+          "nome": "test_remocao_rejeita_link_para_fora_da_pasta",
+          "linha": 165,
+          "linha_final": 176
+        }
+      ],
+      "classes": [
+        {
+          "nome": "MidiaTest",
+          "linha": 33
+        }
+      ],
+      "imports": [
+        "PIL",
+        "PIL.TiffImagePlugin",
+        "io",
+        "midia",
+        "pathlib",
+        "struct",
+        "tempfile",
+        "unittest",
+        "unittest.mock",
+        "werkzeug.datastructures"
+      ]
+    },
+    {
+      "arquivo": "backend/tests/test_v2.py",
+      "categoria": "testes_unitarios",
+      "linhas_fisicas": 301,
+      "funcoes": [
+        {
+          "nome": "setUp",
+          "linha": 19,
+          "linha_final": 31
+        },
+        {
+          "nome": "cadastrar",
+          "linha": 33,
+          "linha_final": 38
+        },
+        {
+          "nome": "verificar_erro",
+          "linha": 40,
+          "linha_final": 42
+        },
+        {
+          "nome": "foto",
+          "linha": 44,
+          "linha_final": 48
+        },
+        {
+          "nome": "criar",
+          "linha": 50,
+          "linha_final": 51
+        },
+        {
+          "nome": "enviar_foto",
+          "linha": 53,
+          "linha_final": 56
+        },
+        {
+          "nome": "test_cadastro_login_me_logout_e_hashes",
+          "linha": 58,
+          "linha_final": 78
+        },
+        {
+          "nome": "test_hashes_de_senha_tem_salt_diferente",
+          "linha": 80,
+          "linha_final": 84
+        },
+        {
+          "nome": "test_email_duplicado_independe_de_maiusculas",
+          "linha": 86,
+          "linha_final": 92
+        },
+        {
+          "nome": "test_login_incorreto_ou_conta_inexistente_mesma_mensagem",
+          "linha": 94,
+          "linha_final": 99
+        },
+        {
+          "nome": "test_validacao_cadastro_e_login",
+          "linha": 101,
+          "linha_final": 113
+        },
+        {
+          "nome": "test_sessao_expirada_e_token_invalido",
+          "linha": 115,
+          "linha_final": 120
+        },
+        {
+          "nome": "test_rotas_privadas_e_preflight_sem_token",
+          "linha": 122,
+          "linha_final": 135
+        },
+        {
+          "nome": "test_somente_autor_altera_e_autoria_nao_vem_do_cliente",
+          "linha": 137,
+          "linha_final": 148
+        },
+        {
+          "nome": "test_coordenadas_validas_e_sem_localizacao",
+          "linha": 150,
+          "linha_final": 160
+        },
+        {
+          "nome": "test_coordenadas_invalidas_nao_cadastram",
+          "linha": 162,
+          "linha_final": 173
+        },
+        {
+          "nome": "test_multipart_coordenadas_foto_privada_e_metadados",
+          "linha": 175,
+          "linha_final": 197
+        },
+        {
+          "nome": "test_multipart_localizacao_invalida_nao_deixa_arquivo",
+          "linha": 199,
+          "linha_final": 205
+        },
+        {
+          "nome": "test_somente_um_arquivo_com_nome_correto",
+          "linha": 207,
+          "linha_final": 213
+        },
+        {
+          "nome": "test_falso_jpeg_e_svg_rejeitados_sem_ocorrencia",
+          "linha": 215,
+          "linha_final": 222
+        },
+        {
+          "nome": "test_upload_mp4_real",
+          "linha": 224,
+          "linha_final": 236
+        },
+        {
+          "nome": "test_erro_de_banco_remove_upload_e_desfaz_ocorrencia",
+          "linha": 238,
+          "linha_final": 248
+        },
+        {
+          "nome": "test_limite_total_da_requisicao",
+          "linha": 250,
+          "linha_final": 253
+        },
+        {
+          "nome": "test_chaves_estrangeiras_ativadas",
+          "linha": 255,
+          "linha_final": 261
+        },
+        {
+          "nome": "test_banco_antigo_preserva_relato_sem_atribuir_autoria",
+          "linha": 265,
+          "linha_final": 297
+        }
+      ],
+      "classes": [
+        {
+          "nome": "RecursosNovosTest",
+          "linha": 18
+        },
+        {
+          "nome": "MigracaoTest",
+          "linha": 264
+        }
+      ],
+      "imports": [
+        "PIL",
+        "app",
+        "autenticacao",
+        "database",
+        "io",
+        "pathlib",
+        "sqlite3",
+        "tempfile",
+        "unittest",
+        "werkzeug.datastructures",
+        "werkzeug.security"
+      ]
+    },
+    {
+      "arquivo": "mobile/App.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 192,
+      "funcoes_exportadas": [
+        "App"
+      ],
+      "imports": [
+        "react",
+        "react-native",
+        "react-native-safe-area-context",
+        "expo-status-bar",
+        "./src/screens/ListaScreen",
+        "./src/screens/CadastroScreen",
+        "./src/screens/DetalhesScreen",
+        "./src/screens/AuthScreen",
+        "./src/components/Interface",
+        "./src/services/api",
+        "./src/theme"
+      ]
+    },
+    {
+      "arquivo": "mobile/index.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 8,
+      "funcoes_exportadas": [],
+      "imports": [
+        "expo",
+        "./App"
+      ]
+    },
+    {
+      "arquivo": "mobile/src/components/AnexoViewer.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 109,
+      "funcoes_exportadas": [
+        "AnexoViewer"
+      ],
+      "imports": [
+        "react",
+        "react-native",
+        "expo",
+        "expo-video",
+        "../services/api",
+        "./Interface",
+        "../theme"
+      ]
+    },
+    {
+      "arquivo": "mobile/src/components/Interface.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 76,
+      "funcoes_exportadas": [
+        "Cabecalho",
+        "Botao",
+        "Mensagem",
+        "Carregamento",
+        "AvisoRelatos"
+      ],
+      "imports": [
+        "react-native",
+        "../theme"
+      ]
+    },
+    {
+      "arquivo": "mobile/src/components/LocalizacaoCampos.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 77,
+      "funcoes_exportadas": [
+        "LocalizacaoCampos"
+      ],
+      "imports": [
+        "react",
+        "react-native",
+        "expo-location",
+        "./Interface",
+        "../theme"
+      ]
+    },
+    {
+      "arquivo": "mobile/src/components/MapaOcorrencias.native.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 68,
+      "funcoes_exportadas": [
+        "MapaOcorrencias"
+      ],
+      "imports": [
+        "react",
+        "react-native",
+        "react-native-maps",
+        "../theme"
+      ]
+    },
+    {
+      "arquivo": "mobile/src/components/MapaOcorrencias.web.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 107,
+      "funcoes_exportadas": [
+        "MapaOcorrencias"
+      ],
+      "imports": [
+        "react",
+        "react-native",
+        "./Interface",
+        "../theme"
+      ]
+    },
+    {
+      "arquivo": "mobile/src/components/SeletorAnexo.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 85,
+      "funcoes_exportadas": [
+        "SeletorAnexo"
+      ],
+      "imports": [
+        "react",
+        "react-native",
+        "expo-image-picker",
+        "./Interface",
+        "../theme"
+      ]
+    },
+    {
+      "arquivo": "mobile/src/config.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 30,
+      "funcoes_exportadas": [
+        "verificarEnderecoApi"
+      ],
+      "imports": [
+        "react-native"
+      ]
+    },
+    {
+      "arquivo": "mobile/src/screens/AuthScreen.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 115,
+      "funcoes_exportadas": [
+        "AuthScreen"
+      ],
+      "imports": [
+        "react",
+        "react-native",
+        "../services/api",
+        "../components/Interface",
+        "../theme"
+      ]
+    },
+    {
+      "arquivo": "mobile/src/screens/CadastroScreen.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 123,
+      "funcoes_exportadas": [
+        "CadastroScreen"
+      ],
+      "imports": [
+        "react",
+        "react-native",
+        "../services/api",
+        "../components/LocalizacaoCampos",
+        "../components/SeletorAnexo",
+        "../components/Interface",
+        "../theme"
+      ]
+    },
+    {
+      "arquivo": "mobile/src/screens/DetalhesScreen.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 134,
+      "funcoes_exportadas": [
+        "DetalhesScreen"
+      ],
+      "imports": [
+        "react",
+        "react-native",
+        "../services/api",
+        "../components/MapaOcorrencias",
+        "../components/AnexoViewer",
+        "../components/Interface",
+        "../theme"
+      ]
+    },
+    {
+      "arquivo": "mobile/src/screens/ListaScreen.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 155,
+      "funcoes_exportadas": [
+        "ListaScreen"
+      ],
+      "imports": [
+        "react",
+        "react-native",
+        "../services/api",
+        "../components/MapaOcorrencias",
+        "../components/Interface",
+        "../theme"
+      ]
+    },
+    {
+      "arquivo": "mobile/src/services/api.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 162,
+      "funcoes_exportadas": [
+        "aoExpirarSessao",
+        "registrarUsuario",
+        "entrar",
+        "consultarPerfil",
+        "restaurarSessao",
+        "sair",
+        "listarOcorrencias",
+        "criarOcorrencia",
+        "buscarOcorrencia",
+        "alterarSituacao",
+        "carregarMidia"
+      ],
+      "imports": [
+        "react-native",
+        "expo-secure-store",
+        "../config"
+      ]
+    },
+    {
+      "arquivo": "mobile/src/theme.js",
+      "categoria": "producao_mobile",
+      "linhas_fisicas": 49,
+      "funcoes_exportadas": [
+        "rotuloGravidade",
+        "rotuloSituacao"
+      ],
+      "imports": [
+        "react-native"
+      ]
+    },
+    {
+      "arquivo": "scripts/configurar_nuvem.sh",
+      "categoria": "infraestrutura",
+      "linhas_fisicas": 14
+    },
+    {
+      "arquivo": "tests/fluxo_web.py",
+      "categoria": "testes_integrados_e_apoio",
+      "linhas_fisicas": 423,
+      "funcoes": [
+        {
+          "nome": "requisitar_api",
+          "linha": 35,
+          "linha_final": 52
+        },
+        {
+          "nome": "consultar",
+          "linha": 55,
+          "linha_final": 58
+        },
+        {
+          "nome": "conferir_porta_livre",
+          "linha": 61,
+          "linha_final": 65
+        },
+        {
+          "nome": "iniciar_api",
+          "linha": 68,
+          "linha_final": 90
+        },
+        {
+          "nome": "parar_api",
+          "linha": 93,
+          "linha_final": 100
+        },
+        {
+          "nome": "pausar_gravacao",
+          "linha": 103,
+          "linha_final": 106
+        },
+        {
+          "nome": "capturar",
+          "linha": 109,
+          "linha_final": 111
+        },
+        {
+          "nome": "identificar_codigo",
+          "linha": 114,
+          "linha_final": 123
+        },
+        {
+          "nome": "criar_conta",
+          "linha": 126,
+          "linha_final": 137
+        },
+        {
+          "nome": "entrar_conta",
+          "linha": 140,
+          "linha_final": 147
+        },
+        {
+          "nome": "preencher_relato",
+          "linha": 150,
+          "linha_final": 154
+        },
+        {
+          "nome": "selecionar_arquivo",
+          "linha": 157,
+          "linha_final": 161
+        },
+        {
+          "nome": "abrir_detalhes",
+          "linha": 164,
+          "linha_final": 166
+        },
+        {
+          "nome": "verificar_imagem",
+          "linha": 169,
+          "linha_final": 171
+        },
+        {
+          "nome": "encerrar_gravacao",
+          "linha": 174,
+          "linha_final": 177
+        },
+        {
+          "nome": "executar",
+          "linha": 180,
+          "linha_final": 417
+        },
+        {
+          "nome": "falhar_envio",
+          "linha": 251,
+          "linha_final": 252
+        },
+        {
+          "nome": "segurar_cadastro",
+          "linha": 265,
+          "linha_final": 266
+        }
+      ],
+      "classes": [],
+      "imports": [
+        "argparse",
+        "datetime",
+        "gravacao",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "playwright.sync_api",
+        "re",
+        "secrets",
+        "socket",
+        "subprocess",
+        "tempfile",
+        "time",
+        "urllib.error",
+        "urllib.request"
+      ]
+    },
+    {
+      "arquivo": "tests/gravacao.py",
+      "categoria": "testes_integrados_e_apoio",
+      "linhas_fisicas": 133,
+      "funcoes": [
+        {
+          "nome": "__init__",
+          "linha": 16,
+          "linha_final": 52
+        },
+        {
+          "nome": "_escrever",
+          "linha": 54,
+          "linha_final": 56
+        },
+        {
+          "nome": "_completar_ate",
+          "linha": 58,
+          "linha_final": 63
+        },
+        {
+          "nome": "_receber_frame",
+          "linha": 65,
+          "linha_final": 90
+        },
+        {
+          "nome": "fechar",
+          "linha": 92,
+          "linha_final": 133
+        }
+      ],
+      "classes": [
+        {
+          "nome": "Gravacao",
+          "linha": 13
+        }
+      ],
+      "imports": [
+        "base64",
+        "pathlib",
+        "playwright.sync_api",
+        "shutil",
+        "subprocess",
+        "tempfile",
+        "time"
+      ]
+    }
+  ],
+  "testes_unitarios_metodos_estaticos": 56,
+  "trechos_existentes_sugeridos": [
+    {
+      "arquivo": "backend/database.py",
+      "linha_inicial": 13,
+      "linha_final": 25,
+      "linhas": 13,
+      "foco_tecnico": "Conexão, chave estrangeira, commit, rollback e fechamento",
+      "conteudo_existente": "def conectar(database):\n    \"\"\"Cada operação recebe sua conexão e confirma ou desfaz a transação.\"\"\"\n    conexao = sqlite3.connect(str(database), timeout=10)\n    conexao.row_factory = sqlite3.Row\n    conexao.execute(\"PRAGMA foreign_keys = ON\")\n    try:\n        yield conexao\n        conexao.commit()\n    except Exception:\n        conexao.rollback()\n        raise\n    finally:\n        conexao.close()"
+    },
+    {
+      "arquivo": "backend/autenticacao.py",
+      "linha_inicial": 12,
+      "linha_final": 23,
+      "linhas": 12,
+      "foco_tecnico": "SHA-256 do token e criação de sessão com validade",
+      "conteudo_existente": "def hash_token(token):\n    return hashlib.sha256(token.encode(\"utf-8\")).hexdigest()\n\n\ndef criar_sessao(conexao, usuario_id):\n    token = secrets.token_urlsafe(32)\n    expira_em = (datetime.now(timezone.utc) + timedelta(days=7)).isoformat(timespec=\"seconds\")\n    conexao.execute(\n        \"INSERT INTO sessoes(usuario_id, token_hash, expira_em) VALUES (?, ?, ?)\",\n        (usuario_id, hash_token(token), expira_em),\n    )\n    return token, expira_em"
+    },
+    {
+      "arquivo": "backend/app.py",
+      "linha_inicial": 49,
+      "linha_final": 62,
+      "linhas": 14,
+      "foco_tecnico": "Autenticação Bearer antes da operação",
+      "conteudo_existente": "        partes = request.headers.get(\"Authorization\", \"\").split()\n        if len(partes) != 2 or partes[0].lower() != \"bearer\":\n            return falha(\"Entre na sua conta para continuar.\", 401)\n        with conectar(app.config[\"DATABASE\"]) as conexao:\n            usuario = conexao.execute(\n                \"\"\"SELECT u.id, u.nome, u.email FROM sessoes s\n                   JOIN usuarios u ON u.id = s.usuario_id\n                   WHERE s.token_hash = ? AND s.expira_em > ?\"\"\",\n                (hash_token(partes[1]), agora_utc()),\n            ).fetchone()\n        if usuario is None:\n            return falha(\"Sessão inválida ou expirada. Entre novamente.\", 401)\n        g.usuario = dict(usuario)\n        g.token_hash = hash_token(partes[1])"
+    },
+    {
+      "arquivo": "backend/app.py",
+      "linha_inicial": 217,
+      "linha_final": 230,
+      "linhas": 14,
+      "foco_tecnico": "Validação do par latitude e longitude",
+      "conteudo_existente": "        latitude, longitude = dados.get(\"latitude\"), dados.get(\"longitude\")\n        if latitude is None and longitude is None:\n            valores.update(latitude=None, longitude=None)\n            return valores, None\n        for campo, valor, limite in ((\"latitude\", latitude, 90), (\"longitude\", longitude, 180)):\n            if isinstance(valor, bool) or (not multipart and not isinstance(valor, (int, float))):\n                return None, falha(\"Informe latitude e longitude numéricas juntas.\", 400)\n            try:\n                numero = float(valor)\n            except (TypeError, ValueError, OverflowError):\n                return None, falha(\"Informe latitude e longitude numéricas juntas.\", 400)\n            if not math.isfinite(numero) or not -limite <= numero <= limite:\n                return None, falha(f\"A {campo} deve estar entre {-limite} e {limite}.\", 400)\n            valores[campo] = numero"
+    },
+    {
+      "arquivo": "backend/app.py",
+      "linha_inicial": 250,
+      "linha_final": 272,
+      "linhas": 23,
+      "foco_tecnico": "INSERT parametrizado e remoção de arquivo se a transação falhar",
+      "conteudo_existente": "        try:\n            # Falha no INSERT, no anexo ou no commit desfaz o banco e remove o arquivo.\n            with conectar(app.config[\"DATABASE\"]) as conexao:\n                cursor = conexao.execute(\n                    \"\"\"INSERT INTO ocorrencias\n                       (bairro, endereco, descricao, gravidade, situacao, criado_em, autor_id, latitude, longitude)\n                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)\"\"\",\n                    (valores[\"bairro\"], valores[\"endereco\"], valores[\"descricao\"], valores[\"gravidade\"],\n                     \"ativo\", agora_utc(), g.usuario[\"id\"], valores[\"latitude\"], valores[\"longitude\"]),\n                )\n                identificador = cursor.lastrowid\n                if anexo:\n                    conexao.execute(\n                        \"\"\"INSERT INTO anexos(ocorrencia_id, nome_arquivo, tipo, mime_type, tamanho)\n                           VALUES (?, ?, ?, ?, ?)\"\"\",\n                        (identificador, anexo[\"nome_arquivo\"], anexo[\"tipo\"], anexo[\"mime_type\"], anexo[\"tamanho\"]),\n                    )\n                registro = conexao.execute(\"SELECT * FROM ocorrencias WHERE id = ?\", (identificador,)).fetchone()\n                resultado = serializar_ocorrencia(conexao, registro)\n        except Exception:\n            if anexo:\n                apagar_arquivo(app.config[\"UPLOAD_FOLDER\"], anexo[\"nome_arquivo\"])\n            raise"
+    },
+    {
+      "arquivo": "backend/app.py",
+      "linha_inicial": 292,
+      "linha_final": 301,
+      "linhas": 10,
+      "foco_tecnico": "Autorização de alteração por autoria",
+      "conteudo_existente": "        with conectar(app.config[\"DATABASE\"]) as conexao:\n            registro = conexao.execute(\"SELECT * FROM ocorrencias WHERE id = ?\", (id,)).fetchone()\n            if registro is None:\n                return falha(\"Ocorrência não encontrada.\", 404)\n            if not pode_alterar(registro):\n                return falha(\"Somente quem cadastrou pode alterar esta ocorrência.\", 403)\n            conexao.execute(\"UPDATE ocorrencias SET situacao = ? WHERE id = ?\", (situacao.strip(), id))\n            registro = conexao.execute(\"SELECT * FROM ocorrencias WHERE id = ?\", (id,)).fetchone()\n            resultado = serializar_ocorrencia(conexao, registro)\n        return jsonify(resultado), 200"
+    },
+    {
+      "arquivo": "backend/midia.py",
+      "linha_inicial": 38,
+      "linha_final": 48,
+      "linhas": 11,
+      "foco_tecnico": "Orientação e recriação de imagem sem EXIF",
+      "conteudo_existente": "            with Image.open(BytesIO(conteudo)) as foto:\n                foto.load()\n                with ImageOps.exif_transpose(foto) as orientada:\n                    modo = \"RGB\" if formato == \"JPEG\" else \"RGBA\"\n                    with orientada.convert(modo) as convertida:\n                        # Uma imagem nova elimina EXIF, GPS e os demais metadados.\n                        with Image.new(modo, convertida.size) as limpa:\n                            limpa.paste(convertida)\n                            saida = BytesIO()\n                            limpa.save(saida, format=formato, **({\"quality\": 85} if formato == \"JPEG\" else {}))\n                            resultado = saida.getvalue()"
+    },
+    {
+      "arquivo": "mobile/src/services/api.js",
+      "linha_inicial": 49,
+      "linha_final": 59,
+      "linhas": 11,
+      "foco_tecnico": "Fetch com Bearer, AbortController e multipart",
+      "conteudo_existente": "    resposta = await fetch(`${API_URL}${caminho}`, {\n      ...opcoes,\n      headers: {\n        Accept: arquivo ? '*/*' : 'application/json',\n        ...(!publica && token ? { Authorization: `Bearer ${token}` } : {}),\n        ...(opcoes.body && !formulario ? { 'Content-Type': 'application/json' } : {}),\n      },\n      signal: controlador.signal,\n    });\n    // No multipart, o próprio cliente define Content-Type com seu boundary.\n    if (arquivo && resposta.ok) return await resposta.blob();"
+    },
+    {
+      "arquivo": "mobile/src/components/LocalizacaoCampos.js",
+      "linha_inicial": 27,
+      "linha_final": 45,
+      "linhas": 19,
+      "foco_tecnico": "Permissão em primeiro plano e GPS com prazo",
+      "conteudo_existente": "      // A permissão só é solicitada após o toque. Não há rastreamento em segundo plano.\n      const permissao = await Location.requestForegroundPermissionsAsync();\n      if (!permissao.granted) {\n        throw new Error('Localização não autorizada. Você pode continuar sem GPS e informar o endereço.');\n      }\n      if (!montada.current || bloqueado.current) return;\n      /** @type {Promise<never>} */\n      const prazo = new Promise((_, rejeitar) => {\n        temporizador = setTimeout(() => rejeitar(new Error('O GPS demorou para responder. Tente novamente ou continue sem localização.')), 15000);\n      });\n      const local = await Promise.race([\n        Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced }), prazo,\n      ]);\n      const { latitude, longitude } = local.coords;\n      if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {\n        throw new Error('O dispositivo não informou uma localização válida.');\n      }\n      // Uma resposta atrasada não pode alterar um formulário que já foi enviado.\n      if (montada.current && !bloqueado.current) onChange({ latitude, longitude });"
+    },
+    {
+      "arquivo": "mobile/src/components/MapaOcorrencias.native.js",
+      "linha_inicial": 42,
+      "linha_final": 49,
+      "linhas": 8,
+      "foco_tecnico": "Marcadores nativos com coordenadas dos relatos",
+      "conteudo_existente": "          {pontos.map((item) => (\n            <Marker\n              key={item.id} coordinate={{ latitude: item.latitude, longitude: item.longitude }}\n              title={item.bairro} description={`Gravidade relatada: ${rotuloGravidade(item.gravidade)}`}\n              pinColor={item.gravidade === 'alta' ? '#A73535' : item.gravidade === 'media' ? '#B2750B' : cores.verde}\n              onPress={() => onAbrirDetalhes?.(item.id)}\n            />\n          ))}"
+    }
+  ],
+  "trechos_total_linhas": 135,
+  "limite_paginas": "10 trechos e 135 linhas selecionadas; número de páginas depende da diagramação do grupo. Os arquivos completos permanecem separados no repositório. Este inventário não afirma cumprir um limite de páginas.",
+  "pendencias_externas": [
+    "Grupo redigir e revisar o trabalho conforme a rubrica e a proibição de trabalho elaborado por IA.",
+    "Confirmar quais são os quatro primeiros diagramas UML exigidos; não inferir da lista existente.",
+    "Não preencher integrantes, horas, leituras ou testes físicos sem evidência fornecida pelo grupo."
+  ]
+}

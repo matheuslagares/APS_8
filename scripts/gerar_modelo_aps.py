@@ -21,6 +21,8 @@ SAIDA = RAIZ / 'documentacao/modelo_aps'
 DADOS = json.loads((SAIDA / 'INVENTARIO_TECNICO.json').read_text())
 ESTRUTURA = json.loads((SAIDA / 'ESTRUTURA_ABNT.json').read_text())
 BASE = DADOS['base_commit']
+OUTPUT_MAIN = 'MODELO_PREENCHIVEL_APS'
+OUTPUT_CODE = 'RELATORIO_TECNICO_CODIGO_SELECIONADO'
 LIMITES = {'objetivo': [1, 2], 'introducao': [2, 4], 'fundamentos': [4, 8], 'plano': [5, 15], 'projeto': [3, 8], 'codigo': [None, 10]}
 CONTADORES = defaultdict(lambda: defaultdict(int))
 MAPA = json.loads((SAIDA / 'MAPA_PAGINAS_ABNT.json').read_text()) if (SAIDA / 'MAPA_PAGINAS_ABNT.json').exists() else {}
@@ -324,10 +326,10 @@ def montar():
     texto(doc, 'As fichas oficiais externas podem integrar um anexo, conforme a orientação institucional. Não apresentar este quadro auxiliar como formulário oficial.', 'Orientacao')
     preencher_lista(doc, ancora_figuras, FIGURAS)
     preencher_lista(doc, ancora_sumario, SUMARIO, toc=True)
-    doc.save(SAIDA / 'MODELO_PREENCHIVEL_APS.docx')
+    doc.save(SAIDA / (OUTPUT_MAIN + '.docx'))
     principal = list(PAGINAS); entradas = list(SUMARIO)
     PAGINAS.clear(); SUMARIO.clear(); codigo = Document(); configurar(codigo); configurar_numeros(codigo.sections[0]); paginas_codigo(codigo, independente=True)
-    codigo.save(SAIDA / 'RELATORIO_TECNICO_CODIGO_SELECIONADO.docx')
+    codigo.save(SAIDA / (OUTPUT_CODE + '.docx'))
     (SAIDA / 'ORCAMENTO_PAGINAS.json').write_text(json.dumps({'natureza':'Modelo de formatação ABNT; não atesta texto final ou aceitação acadêmica.','base_commit':BASE,'paginas':principal,'sumario':entradas,'figuras':FIGURAS,'paginas_codigo':list(PAGINAS),'limites':LIMITES,'elementos_pretextuais_contados':6,'observacao_pretextuais':'A quantidade de páginas é apurada no PDF; o sumário pode ocupar mais de uma página.','formato':'A4 frente; Arial 12; 1,5; margens 3/2 cm; primeira linha 1,25 cm escolhida.'},ensure_ascii=False,indent=2)+'\n')
 
 

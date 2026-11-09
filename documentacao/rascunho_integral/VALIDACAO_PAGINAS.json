@@ -1,0 +1,102 @@
+{
+  "verificado_em_utc": "2026-11-09T00:01:41+00:00",
+  "natureza": "Checagem técnica de formatação ABNT adotada e orçamento de um modelo; não certifica texto final, vigência normativa ou aceitação acadêmica.",
+  "paginas_pdf_modelo": 36,
+  "paginas_pdf_codigo_selecionado": 7,
+  "primeira_pagina_textual_fisica": 9,
+  "primeiro_numero_exibido": 8,
+  "geometria": "A4; superior/esquerda 3 cm; inferior/direita 2 cm; somente frente.",
+  "corpo_word": "Arial 12; entrelinhas 1,5; justificado; recuo inicial 1,25 cm adotado.",
+  "fontes_pdf_renderizadas": [
+    "LiberationMono",
+    "LiberationSans",
+    "LiberationSans-Bold"
+  ],
+  "observacao_fontes": "O Word solicita Arial/Courier New; o LibreOffice deste ambiente pode substituí-las por Liberation Sans/Mono. A família é uma escolha editorial, não imposição única da ABNT.",
+  "checagens": [
+    {
+      "secao": "objetivo",
+      "paginas_reservadas": 1,
+      "paginas_fisicas": [
+        9
+      ],
+      "minimo_rubrica": 1,
+      "maximo_rubrica": 2
+    },
+    {
+      "secao": "introducao",
+      "paginas_reservadas": 2,
+      "paginas_fisicas": [
+        10,
+        11
+      ],
+      "minimo_rubrica": 2,
+      "maximo_rubrica": 4
+    },
+    {
+      "secao": "fundamentos",
+      "paginas_reservadas": 4,
+      "paginas_fisicas": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "minimo_rubrica": 4,
+      "maximo_rubrica": 8
+    },
+    {
+      "secao": "plano",
+      "paginas_reservadas": 5,
+      "paginas_fisicas": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "minimo_rubrica": 5,
+      "maximo_rubrica": 15
+    },
+    {
+      "secao": "projeto",
+      "paginas_reservadas": 6,
+      "paginas_fisicas": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "minimo_rubrica": 3,
+      "maximo_rubrica": 8
+    },
+    {
+      "secao": "codigo",
+      "paginas_reservadas": 7,
+      "paginas_fisicas": [
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "minimo_rubrica": null,
+      "maximo_rubrica": 10
+    }
+  ],
+  "sumario_conferido": true,
+  "figuras_com_identificacao_e_fonte": 5,
+  "texto_fora_margens": [],
+  "limites_da_conclusao": [
+    "São espaços para redação própria; não comprovam conteúdo concluído.",
+    "Recalcular páginas e sumário depois de editar.",
+    "Não há nomes, horas reais, assinatura ou ficha oficial preenchida.",
+    "Código apresentado é seleção de 135 linhas; fonte integral separado.",
+    "A rubrica proíbe trabalho elaborado por IA; esclarecer com o professor o auxílio já utilizado.",
+    "ZIP não é RAR/WinRAR e não foi renomeado a .doc."
+  ]
+}

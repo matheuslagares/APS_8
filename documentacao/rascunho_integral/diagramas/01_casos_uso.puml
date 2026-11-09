@@ -1,0 +1,59 @@
+@startuml casos_uso
+title REFERÊNCIA TÉCNICA — VALIDAR PELO GRUPO\n01. Casos de uso do protótipo
+left to right direction
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam ArrowColor #40566C
+skinparam actorStyle awesome
+skinparam usecaseBackgroundColor #F1F6FA
+skinparam usecaseBorderColor #40566C
+scale max 780*1100
+
+actor Visitante as Visitante
+actor "Participante\nautenticado" as Participante
+actor "Autor do relato\n(papel do participante)" as Autor
+Participante <|-- Autor
+
+rectangle "Alerta de Alagamentos" {
+  usecase "Criar conta" as Conta
+  usecase "Entrar" as Entrar
+  usecase "Consultar lista\nde relatos" as Lista
+  usecase "Consultar mapa" as Mapa
+  usecase "Cadastrar relato" as Cadastro
+  usecase "Consultar detalhes" as Detalhes
+  usecase "Consultar mídia\nprivada" as Midia
+  usecase "Sair e revogar sessão" as Sair
+  usecase "Resolver o próprio relato" as Resolver
+  usecase "Obter posição atual\n(opcional)" as GPS
+  usecase "Anexar foto ou vídeo\n(opcional)" as Anexar
+}
+
+Visitante --> Conta
+Visitante --> Entrar
+Participante --> Lista
+Participante --> Mapa
+Participante --> Cadastro
+Participante --> Detalhes
+Participante --> Midia
+Participante --> Sair
+Autor --> Resolver
+GPS ..> Cadastro : <<extend>>\n[participante escolhe usar GPS]
+Anexar ..> Cadastro : <<extend>>\n[participante escolhe um arquivo]
+
+note bottom of Cadastro
+  GPS depende de permissão em primeiro plano.
+  Negar permissão permite continuar sem GPS.
+  Um anexo opcional: JPEG, PNG ou MP4.
+end note
+
+note bottom of Participante
+  Pré-condição dos casos protegidos: sessão válida.
+  Cadastro e login criam uma sessão; no nativo,
+  uma sessão já guardada pode ser restaurada.
+  O papel Autor é relativo ao relato selecionado.
+end note
+
+footer Esboço assistido por IA; revisar com o código antes de usar.\nFontes: backend/app.py; mobile/App.js; mobile/src/screens/.
+@enduml
