@@ -14,7 +14,6 @@ export default function ListaScreen({ onNovoRegistro, onAbrirDetalhes, mensagem 
   const consultando = useRef(false);
 
   const carregar = useCallback(async () => {
-    // A referência bloqueia cliques antes mesmo de o React redesenhar o botão.
     if (consultando.current) return;
     consultando.current = true;
     try {
@@ -37,8 +36,6 @@ export default function ListaScreen({ onNovoRegistro, onAbrirDetalhes, mensagem 
   useEffect(() => {
     montada.current = true;
     consultando.current = true;
-    // O carregamento já começa como true. O efeito só altera o estado quando
-    // a operação externa termina, evitando uma renderização inicial extra.
     listarOcorrencias()
       .then((dados) => { if (montada.current) setOcorrencias(dados); })
       .catch((falha) => { if (montada.current) setErro(falha.message); })
@@ -46,7 +43,6 @@ export default function ListaScreen({ onNovoRegistro, onAbrirDetalhes, mensagem 
         consultando.current = false;
         if (montada.current) setCarregando(false);
       });
-    // Uma resposta atrasada não deve atualizar uma tela que já foi fechada.
     return () => { montada.current = false; };
   }, []);
 

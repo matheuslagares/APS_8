@@ -3,18 +3,18 @@
   "version": "2.0.0",
   "main": "index.js",
   "dependencies": {
-    "expo": "~57.0.32",
-    "expo-image-picker": "~57.0.21",
-    "expo-location": "~57.0.23",
-    "expo-secure-store": "~57.0.4",
-    "expo-status-bar": "~57.0.1",
-    "expo-video": "~57.0.5",
+    "expo": "~58.0.23",
+    "expo-image-picker": "~58.0.10",
+    "expo-location": "~58.0.20",
+    "expo-secure-store": "~58.0.2",
+    "expo-status-bar": "~58.0.4",
+    "expo-video": "~58.0.13",
     "leaflet": "^1.9.4",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "react-native": "0.86.3",
-    "react-native-maps": "1.27.2",
-    "react-native-safe-area-context": "~5.7.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.1",
+    "react-native-maps": "1.29.11",
+    "react-native-safe-area-context": "~5.11.1",
     "react-native-web": "~0.21.0"
   },
   "scripts": {
@@ -27,9 +27,9 @@
   },
   "private": true,
   "devDependencies": {
-    "@types/react": "^19.3.0",
+    "@types/react": "~19.3.0",
     "eslint": "^9.39.5",
-    "eslint-config-expo": "~57.0.2",
+    "eslint-config-expo": "~58.0.4",
     "typescript": "^6.0.3"
   }
 }

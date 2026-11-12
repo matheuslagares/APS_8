@@ -8,7 +8,6 @@ const LIMITE_BYTES = 20 * 1024 * 1024;
 const TIPOS = ['image/jpeg', 'image/png', 'video/mp4'];
 
 function prepararArquivo(asset) {
-  // O MIME e a extensão ajudam a pessoa; a API também verifica o conteúdo real.
   const nomeInformado = asset.fileName || asset.file?.name || '';
   const caminho = (asset.uri || '').split('?')[0];
   const extensao = (caminho.match(/\.([a-z0-9]+)$/i)?.[1] || nomeInformado.match(/\.([a-z0-9]+)$/i)?.[1] || '').toLowerCase();
@@ -20,7 +19,6 @@ function prepararArquivo(asset) {
   const fileSize = asset.fileSize ?? asset.file?.size;
   if (fileSize > LIMITE_BYTES) throw new Error('O anexo deve ter no máximo 20 MiB. Escolha um arquivo menor.');
   const extensaoFinal = mimeType === 'video/mp4' ? 'mp4' : mimeType === 'image/png' ? 'png' : 'jpg';
-  // No navegador, asset.file é o File original usado pelo FormData.
   return { ...asset, mimeType, fileSize, fileName: nomeInformado || `anexo.${extensaoFinal}` };
 }
 
@@ -42,8 +40,6 @@ export default function SeletorAnexo({ value, onChange, disabled = false }) {
     setSelecionando(true);
     setErro('');
     try {
-      // No iOS, vídeos originais exigem acesso à biblioteca. No Android e na web,
-      // o seletor do sistema permite escolher um arquivo sem pedir acesso amplo.
       if (Platform.OS === 'ios') {
         const permissao = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (!permissao.granted) throw new Error('Autorize o acesso às fotos para selecionar o anexo, ou continue sem arquivo.');

@@ -24,7 +24,6 @@ function ImagemAnexo({ recurso, onTentarNovamente }) {
 
 function VideoAnexo({ recurso, onTentarNovamente }) {
   const fonte = useMemo(() => ({ uri: recurso.uri, headers: recurso.headers }), [recurso]);
-  // O hook do expo-video libera o player ao desmontar. O vídeo começa pausado.
   const player = useVideoPlayer(fonte, (instancia) => { instancia.loop = false; });
   const { status } = useEvent(player, 'statusChange', { status: player.status });
   return (
@@ -58,8 +57,6 @@ export default function AnexoViewer({ anexo }) {
   useEffect(() => {
     let ativa = true;
     let liberar;
-    // O serviço protege a requisição: Bearer em cabeçalho no celular, blob na web.
-    // O token nunca entra na URL do arquivo ou no texto exibido na interface.
     carregarMidia({ id })
       .then((resposta) => {
         if (!ativa) {
@@ -73,7 +70,6 @@ export default function AnexoViewer({ anexo }) {
       .finally(() => { if (ativa) setCarregando(false); });
     return () => {
       ativa = false;
-      // Revoga o blob da web mesmo quando a pessoa volta antes do download terminar.
       liberar?.();
     };
   }, [id, tentativa]);

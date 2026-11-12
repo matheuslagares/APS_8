@@ -31,7 +31,6 @@ export default function AuthScreen({ onAutenticado, mensagem = '' }) {
       setErro('Informe um e-mail válido.');
       return;
     }
-    // A senha não recebe trim: os espaços também podem fazer parte dela.
     if (!senha || (criandoConta && (senha.length < 8 || senha.length > 128))) {
       setErro(criandoConta ? 'A senha deve ter entre 8 e 128 caracteres.' : 'Informe sua senha.');
       return;

@@ -1,5 +1,4 @@
-# Ambientes locais, banco de demonstração e arquivos gerados não são código.
-backend/.venv/
+.venv/
 __pycache__/
 *.py[cod]
 backend/*.db
@@ -8,9 +7,24 @@ backend/uploads/
 mobile/node_modules/
 mobile/.expo/
 mobile/dist/
+mobile/web-build/
+mobile/android/
+mobile/ios/
+mobile/.kotlin/
+mobile/.metro-health-check*
+mobile/expo-env.d.ts
 mobile/.env
-mobile/.env.*.local
+mobile/.env*.local
+*.tsbuildinfo
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.pem
+*.mobileprovision
 *.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
 .DS_Store
-.venv-e2e/
-test-results/

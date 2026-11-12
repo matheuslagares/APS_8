@@ -33,12 +33,9 @@ export default function CadastroScreen({ onVoltar, onSalvo, onOcupadoChange }) {
     onOcupadoChange(true);
     setErro('');
     try {
-      // Identificador, data e situação inicial são definidos pela API, não pelo celular.
-      // Texto, coordenadas e anexo formam um único cadastro confirmado pela API.
       await criarOcorrencia(dados, anexo);
       onSalvo();
     } catch (falha) {
-      // Os campos permanecem preenchidos para a pessoa corrigir ou tentar novamente.
       setErro(falha.message);
     } finally {
       envioEmAndamento.current = false;

@@ -63,7 +63,6 @@ export default function DetalhesScreen({ id, onVoltar, onOcupadoChange }) {
     setErro('');
     setMensagem('');
     try {
-      // Só mostramos a nova situação depois de a API confirmar a gravação no banco.
       const dados = await alterarSituacao(id, 'resolvido');
       setOcorrencia(dados);
       setMensagem('Situação atualizada para resolvido.');

@@ -16,7 +16,6 @@ class ErroApi extends Error {
 async function apagarSessaoLocal() {
   token = null;
   if (Platform.OS !== 'web') {
-    // Após revogar no servidor, uma credencial remanescente também será recusada.
     try { await SecureStore.deleteItemAsync(CHAVE_SESSAO); } catch { /* Tenta novamente ao restaurar. */ }
   }
   ouvintesExpiracao.forEach((ouvinte) => ouvinte());
@@ -30,7 +29,6 @@ async function guardarToken(novoToken) {
       throw new Error('Não foi possível guardar a sessão no dispositivo. Tente entrar novamente.');
     }
   }
-  // No navegador fica só em memória: recarregar a página solicita novo login.
   token = novoToken;
 }
 
@@ -55,7 +53,6 @@ async function requisitar(caminho, opcoes = {}, { publica = false, arquivo = fal
       },
       signal: controlador.signal,
     });
-    // No multipart, o próprio cliente define Content-Type com seu boundary.
     if (arquivo && resposta.ok) return await resposta.blob();
     let dados;
     try {
@@ -103,7 +100,6 @@ export async function restaurarSessao() {
     return await consultarPerfil();
   } catch (erro) {
     if (erro.status === 401) return null;
-    // Uma falha de rede preserva a sessão e permite tentar novamente.
     throw erro;
   }
 }
@@ -130,7 +126,6 @@ export function criarOcorrencia(dados, anexo = null) {
     if (!anexo.file) throw new Error('Selecione o arquivo novamente antes de salvar.');
     formulario.append('arquivo', anexo.file, anexo.fileName || anexo.file.name);
   } else {
-    // A ponte nativa aceita URI; FormData do navegador recebe um objeto File.
     formulario.append('arquivo', /** @type {any} */ ({
       uri: anexo.uri, name: anexo.fileName || 'anexo',
       type: anexo.mimeType || (anexo.type === 'video' ? 'video/mp4' : 'image/jpeg'),
@@ -149,13 +144,11 @@ export function alterarSituacao(id, situacao) {
 
 export async function carregarMidia(anexo) {
   if (!Number.isSafeInteger(anexo.id) || anexo.id <= 0) throw new Error('Anexo inválido.');
-  // A credencial só segue para a API configurada, nunca para URLs dos dados.
   const caminho = `/anexos/${anexo.id}`;
   if (Platform.OS !== 'web') {
     verificarEnderecoApi();
     return { uri: `${API_URL}${caminho}`, headers: { Authorization: `Bearer ${token}` }, liberar: () => {} };
   }
-  // <video> web não envia Authorization arbitrário; usa-se um Blob privado.
   const arquivo = await requisitar(caminho, {}, { arquivo: true, tempo: 60000 });
   const uri = URL.createObjectURL(arquivo);
   return { uri, headers: {}, liberar: () => { URL.revokeObjectURL(uri); } };

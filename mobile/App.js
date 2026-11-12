@@ -11,7 +11,6 @@ import { aoExpirarSessao, restaurarSessao, sair } from './src/services/api';
 import { cores } from './src/theme';
 
 export default function App() {
-  // A sessão controla o acesso; a navegação do protótipo continua por estado.
   const [tela, setTela] = useState('lista');
   const [idSelecionado, setIdSelecionado] = useState(null);
   const [mensagem, setMensagem] = useState('');
@@ -34,7 +33,6 @@ export default function App() {
 
   useEffect(() => {
     let ativa = true;
-    // A sessão nativa vem do SecureStore. Na web ela existe só na memória.
     restaurarSessao()
       .then((pessoa) => { if (ativa) setUsuario(pessoa); })
       .catch((falha) => { if (ativa) setErroRestauracao(falha.message); })
@@ -60,7 +58,6 @@ export default function App() {
     try {
       setUsuario(await restaurarSessao());
     } catch (falha) {
-      // Uma falha de rede não deve descartar uma sessão ainda válida no aparelho.
       setErroRestauracao(falha.message);
     } finally {
       acaoSessaoEmAndamento.current = false;
@@ -81,7 +78,6 @@ export default function App() {
     Keyboard.dismiss();
     setErroSaida('');
     try {
-      // Só saímos depois da confirmação: apagar a tela não revoga o token no servidor.
       await sair();
       setUsuario(null);
       limparNavegacao();
@@ -100,8 +96,6 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    // O botão físico do Android volta para a lista. Durante uma gravação, aguardamos
-    // a resposta para não deixar a pessoa sem saber se o servidor recebeu o pedido.
     const evento = BackHandler.addEventListener('hardwareBackPress', () => {
       if (ocupado || saindo) return true;
       if (tela === 'lista') return false;

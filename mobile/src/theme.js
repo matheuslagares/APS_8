@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-// Cores e espaçamentos compartilhados mantêm as três telas consistentes.
 export const cores = {
   fundo: '#F1F6F7',
   papel: '#FFFFFF',

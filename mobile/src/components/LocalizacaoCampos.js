@@ -24,7 +24,6 @@ export default function LocalizacaoCampos({ value, onChange, disabled = false })
     setErro('');
     let temporizador;
     try {
-      // A permissão só é solicitada após o toque. Não há rastreamento em segundo plano.
       const permissao = await Location.requestForegroundPermissionsAsync();
       if (!permissao.granted) {
         throw new Error('Localização não autorizada. Você pode continuar sem GPS e informar o endereço.');
@@ -41,7 +40,6 @@ export default function LocalizacaoCampos({ value, onChange, disabled = false })
       if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
         throw new Error('O dispositivo não informou uma localização válida.');
       }
-      // Uma resposta atrasada não pode alterar um formulário que já foi enviado.
       if (montada.current && !bloqueado.current) onChange({ latitude, longitude });
     } catch (falha) {
       if (montada.current) {

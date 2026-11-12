@@ -26,15 +26,12 @@ export default function MapaOcorrencias({ ocorrencias, onAbrirDetalhes = undefin
     if (!possuiPontos) return;
     let ativa = true;
     let observer;
-    // O import fica no efeito para não acessar window durante a preparação web.
     import('leaflet').then((modulo) => {
       if (!ativa || !elemento.current) return;
       const L = modulo.default || modulo;
       leaflet.current = L;
       const atual = L.map(elemento.current, { scrollWheelZoom: false });
       mapa.current = atual;
-      // OSM exige atribuição. Nenhuma coordenada pessoal é enviada à API de relatos
-      // só por mover o mapa: o servidor recebe GPS apenas ao salvar o formulário.
       tiles.current = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -71,7 +68,6 @@ export default function MapaOcorrencias({ ocorrencias, onAbrirDetalhes = undefin
       const marcador = L.circleMarker([item.latitude, item.longitude], {
         radius: 10, color: '#FFFFFF', weight: 2, fillColor: cor, fillOpacity: 0.95,
       }).addTo(marcadores.current);
-      // Dados de participantes entram como texto; nunca são interpolados em HTML.
       const legenda = document.createElement('span');
       legenda.textContent = `#${item.id} · ${item.bairro} · ${rotuloGravidade(item.gravidade)}`;
       marcador.bindTooltip(legenda);

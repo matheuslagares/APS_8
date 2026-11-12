@@ -1,7 +1,5 @@
 import { Platform } from 'react-native';
 
-// O Expo inclui variáveis EXPO_PUBLIC_* no aplicativo: nunca coloque segredos aqui.
-// Reinicie o Expo depois de alterar mobile/.env para carregar o novo endereço.
 const enderecoConfigurado = process.env.EXPO_PUBLIC_API_URL?.trim();
 export const API_URL = (
   enderecoConfigurado || (Platform.OS === 'web' ? 'http://127.0.0.1:5000' : '')
@@ -17,8 +15,6 @@ export function verificarEnderecoApi() {
   }
   try {
     const endereco = new URL(API_URL);
-    // Query/fragmento alterariam o destino ao acrescentar /ocorrencias.
-    // 0.0.0.0 serve para o Flask escutar, não para o cliente se conectar.
     if (!['http:', 'https:'].includes(endereco.protocol) || !endereco.hostname ||
         endereco.hostname === '0.0.0.0' || endereco.search || endereco.hash ||
         endereco.username || endereco.password) {
