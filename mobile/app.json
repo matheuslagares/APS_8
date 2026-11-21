@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "Alerta de Alagamentos",
+    "slug": "alerta-de-alagamentos",
+    "version": "2.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#EAF4F5",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-video",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Permita usar sua localização apenas ao incluir o GPS em um relato."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Selecione uma foto ou vídeo para anexar ao seu relato.",
+          "cameraPermission": false,
+          "microphonePermission": false
+        }
+      ],
+      "expo-status-bar"
+    ]
+  }
+}
